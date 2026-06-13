@@ -89,13 +89,12 @@ const verifyCode = async (req, res) => {
 const registerUser = async (req, res) => {
 
   try {
-    const firstName = validator.escape(req.body.firstName || '');
-    const lastName = validator.escape(req.body.lastName || '');
+    const fullName = validator.escape(req.body.fullName || '');
     const email = validator.normalizeEmail(req.body.email || '');
     const phone = validator.escape(req.body.phone || '');
     const password = validator.escape(req.body.password || '');
 
-    if (!firstName || !lastName || !email || !phone || !password) {
+    if (!fullName || !email || !phone || !password) {
       return res.status(400).json({ message: 'All fields are required' });
     }
 
@@ -108,8 +107,7 @@ const registerUser = async (req, res) => {
     console.log('finally')
 
     const user = await UserModel.create({
-      firstName,
-      lastName,
+      fullName,
       email,
       phone,
       password,
@@ -179,8 +177,7 @@ const login = async (req, res) => {
 
         return res.status(200).json({
             id: userInfo._id,
-            firstName: userInfo.firstName,
-            lastName: userInfo.lastName,
+            fullName: userInfo.fullName,
             email: userInfo.email,
             role: userInfo.role
         });
@@ -231,8 +228,7 @@ const loginAdmin = async (req, res) => {
 
     return res.status(200).json({
         id: user._id,
-        firstName: user.firstName,
-        lastName: user.lastName,
+        fullName: user.fullName,
         email: user.email,
         role: user.role
     });

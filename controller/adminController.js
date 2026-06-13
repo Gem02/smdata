@@ -120,11 +120,10 @@ const getAllTransactions = async (req, res) => {
 
 const updateUser = async (req, res) => {
   try {
-    const { userId, firstName, lastName, email, phone } = req.body;
+    const { userId, fullName, email, phone } = req.body;
 
     const allowedUpdates = {};
-    if (firstName) allowedUpdates.firstName = firstName;
-    if (lastName) allowedUpdates.lastName = lastName;
+    if (fullName) allowedUpdates.fullName = fullName;
     if (email) allowedUpdates.email = email;
     if (phone) allowedUpdates.phoneNumber = phone;
 

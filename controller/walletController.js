@@ -17,7 +17,7 @@ const initiateTopup = async (req, res) => {
     }
 
     const email = user.email;
-    const name = user.firstName;
+    const name = user.fullName;
     const phoneNumber = user.phone;
     const bankCode = ["20867"];
     const businessId = process.env.XIXAPAY_BUSINESS_ID;

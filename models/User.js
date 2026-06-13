@@ -10,17 +10,11 @@ const jwt = require('jsonwebtoken');
 //const config = require('../config/config');
 
 const UserSchema = new mongoose.Schema({
-  firstName: {
+  fullName: {
     type: String,
-    required: [true, 'First name is required'],
+    required: [true, 'Full name is required'],
     trim: true,
-    maxlength: [50, 'First name cannot exceed 50 characters']
-  },
-  lastName: {
-    type: String,
-    required: [true, 'Last name is required'],
-    trim: true,
-    maxlength: [50, 'Last name cannot exceed 50 characters']
+    maxlength: [100, 'Full name cannot exceed 100 characters']
   },
   email: {
     type: String,

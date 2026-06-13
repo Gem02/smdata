@@ -11,11 +11,11 @@ async function createUserVirtualAccount(user) {
       `${baseUrl}/api/v1/bank-transfer/reserved-accounts`,
       {
         accountReference: `user_${user._id}`, 
-        accountName: `${user.firstName} ${user.lastName}`,
+        accountName: `${user.fullName}`,
         currencyCode: "NGN",
         contractCode: process.env.MONNIFY_CONTRACT_CODE,
         customerEmail: user.email,
-        customerName: `${user.firstName} ${user.lastName}`,
+        customerName: `${user.fullName}`,
         nin: user.nin || undefined 
       },
       {

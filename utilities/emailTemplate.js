@@ -6,7 +6,7 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
  async function sendCACRegistrationEmail({ 
   email, 
-  firstName, 
+  fullName, 
   businessName, 
   registrationType
 }) {
@@ -18,7 +18,7 @@ const resend = new Resend(process.env.RESEND_API_KEY);
         </div>
         <div style="padding: 32px;">
           <p style="font-size: 16px; line-height: 1.6; margin: 0 0 16px;">
-            Hi <strong>${firstName}</strong>,
+            Hi <strong>${fullName}</strong>,
           </p>
           <p style="font-size: 16px; line-height: 1.6; margin: 0 0 24px;">
             Thank you for submitting your <strong>${registrationType}</strong> registration for <strong>${businessName}</strong> through <strong>Fylder.com.ng</strong>. We've successfully received your application and our team is now processing it.
@@ -107,7 +107,7 @@ async function sendEmail({ to, subject, html }) {
 
  async function sendStatusUpdateEmail({
   email,
-  firstName,
+  fullName,
   businessName,
   registrationType,
   previousStatus,
@@ -135,7 +135,7 @@ async function sendEmail({ to, subject, html }) {
         </div>
         <div style="padding: 32px;">
           <p style="font-size: 16px; line-height: 1.6; margin: 0 0 16px;">
-            Hi <strong>${firstName}</strong>,
+            Hi <strong>${fullName}</strong>,
           </p>
           <p style="font-size: 16px; line-height: 1.6; margin: 0 0 24px;">
             The status of your <strong>${registrationType}</strong> registration for <strong>${businessName}</strong> has been updated.
