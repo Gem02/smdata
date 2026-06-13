@@ -105,8 +105,8 @@ const registerUser = async (req, res) => {
       return res.status(400).json({ message: 'User already exists' });
     }
 
-    // Generate unique referral code for new user
-    const newReferralCode = crypto.randomBytes(6).toString('hex').toUpperCase();
+    // Generate unique 6-character referral code for new user
+    const newReferralCode = crypto.randomBytes(3).toString('hex').toUpperCase();
 
     // Prepare user data
     const userData = {
