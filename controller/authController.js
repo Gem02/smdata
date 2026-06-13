@@ -3,6 +3,7 @@ const UserModel = require('../models/User');
 const { generateAccessToken, generateRefreshToken } = require('../utilities/generateToken');
 const bcryptjs = require('bcryptjs');
 const validator = require('validator');
+const crypto = require('crypto');
 const forgotPasswordModel = require('../models/forgotPassword');
 const {sendVerificationEmail} = require('../utilities/emailTemplate');
 //const {checkNIN} = require('../utilities/quickVerify')
@@ -93,6 +94,7 @@ const registerUser = async (req, res) => {
     const email = validator.normalizeEmail(req.body.email || '');
     const phone = validator.escape(req.body.phone || '');
     const password = validator.escape(req.body.password || '');
+    const referralCode = req.body.referralCode || '';
 
     if (!fullName || !email || !phone || !password) {
       return res.status(400).json({ message: 'All fields are required' });
@@ -103,15 +105,29 @@ const registerUser = async (req, res) => {
       return res.status(400).json({ message: 'User already exists' });
     }
 
+    // Generate unique referral code for new user
+    const newReferralCode = crypto.randomBytes(6).toString('hex').toUpperCase();
 
-    console.log('finally')
-
-    const user = await UserModel.create({
+    // Prepare user data
+    const userData = {
       fullName,
       email,
       phone,
       password,
-    });
+      referralCode: newReferralCode
+    };
+
+    // Check if referral code is provided and valid
+    if (referralCode) {
+      const referrer = await UserModel.findOne({ referralCode });
+      if (referrer) {
+        userData.referredBy = referrer._id;
+      }
+    }
+
+    console.log('finally')
+
+    const user = await UserModel.create(userData);
 
     let wallet;
 
