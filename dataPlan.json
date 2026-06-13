@@ -1,0 +1,1449 @@
+[
+  {
+    "id": 13,
+    "network": "9MOBILE",
+    "plan_type": "GIFTING",
+    "data_volume": "15.0 GB",
+    "price": "₦4050.0",
+    "validity": "30 days"
+  },
+  {
+    "id": 14,
+    "network": "9MOBILE",
+    "plan_type": "GIFTING",
+    "data_volume": "11.0 GB",
+    "price": "₦3240.0",
+    "validity": "30 days"
+  },
+  {
+    "id": 15,
+    "network": "9MOBILE",
+    "plan_type": "GIFTING",
+    "data_volume": "4.5 GB",
+    "price": "₦1620.0",
+    "validity": "30 days"
+  },
+  {
+    "id": 33,
+    "network": "9MOBILE",
+    "plan_type": "GIFTING",
+    "data_volume": "2.0 GB",
+    "price": "₦972.0",
+    "validity": "30 days"
+  },
+  {
+    "id": 36,
+    "network": "9MOBILE",
+    "plan_type": "GIFTING",
+    "data_volume": "1.5 GB",
+    "price": "₦810.0",
+    "validity": "30 days"
+  },
+  {
+    "id": 58,
+    "network": "9MOBILE",
+    "plan_type": "GIFTING",
+    "data_volume": "75.0 GB",
+    "price": "₦12150.0",
+    "validity": "30 days"
+  },
+  {
+    "id": 117,
+    "network": "9MOBILE",
+    "plan_type": "GIFTING",
+    "data_volume": "25.0 MB",
+    "price": "₦44.0",
+    "validity": "1 day"
+  },
+  {
+    "id": 118,
+    "network": "9MOBILE",
+    "plan_type": "GIFTING",
+    "data_volume": "100.0 MB",
+    "price": "₦84.0",
+    "validity": "1 day"
+  },
+  {
+    "id": 119,
+    "network": "9MOBILE",
+    "plan_type": "GIFTING",
+    "data_volume": "650.0 MB",
+    "price": "₦168.0",
+    "validity": "1 day"
+  },
+  {
+    "id": 120,
+    "network": "9MOBILE",
+    "plan_type": "GIFTING",
+    "data_volume": "1.0 GB",
+    "price": "₦243.0",
+    "validity": "1 day"
+  },
+  {
+    "id": 121,
+    "network": "9MOBILE",
+    "plan_type": "GIFTING",
+    "data_volume": "2000.0 MB",
+    "price": "₦410.0",
+    "validity": "1 day"
+  },
+  {
+    "id": 122,
+    "network": "9MOBILE",
+    "plan_type": "GIFTING",
+    "data_volume": "250.0 MB",
+    "price": "₦168.0",
+    "validity": "7 days"
+  },
+  {
+    "id": 123,
+    "network": "9MOBILE",
+    "plan_type": "GIFTING",
+    "data_volume": "500.0 MB",
+    "price": "₦410.0",
+    "validity": "30 days"
+  },
+  {
+    "id": 142,
+    "network": "9MOBILE",
+    "plan_type": "GIFTING",
+    "data_volume": "40.0 GB",
+    "price": "₦8100.0",
+    "validity": "30 days"
+  },
+  {
+    "id": 241,
+    "network": "9MOBILE",
+    "plan_type": "SME",
+    "data_volume": "1.0 GB",
+    "price": "₦300.0",
+    "validity": "30 days"
+  },
+  {
+    "id": 242,
+    "network": "9MOBILE",
+    "plan_type": "SME",
+    "data_volume": "2.0 GB",
+    "price": "₦600.0",
+    "validity": "30 days"
+  },
+  {
+    "id": 243,
+    "network": "9MOBILE",
+    "plan_type": "SME",
+    "data_volume": "1.5 GB",
+    "price": "₦450.0",
+    "validity": "30 days"
+  },
+  {
+    "id": 244,
+    "network": "9MOBILE",
+    "plan_type": "SME",
+    "data_volume": "3.0 GB",
+    "price": "₦900.0",
+    "validity": "30 days"
+  },
+  {
+    "id": 245,
+    "network": "9MOBILE",
+    "plan_type": "SME",
+    "data_volume": "4.0 GB",
+    "price": "₦1200.0",
+    "validity": "30 days"
+  },
+  {
+    "id": 246,
+    "network": "9MOBILE",
+    "plan_type": "SME",
+    "data_volume": "4.5 GB",
+    "price": "₦1350.0",
+    "validity": "30 days"
+  },
+  {
+    "id": 247,
+    "network": "9MOBILE",
+    "plan_type": "SME",
+    "data_volume": "3.5 GB",
+    "price": "₦1050.0",
+    "validity": "30 days"
+  },
+  {
+    "id": 248,
+    "network": "9MOBILE",
+    "plan_type": "SME",
+    "data_volume": "5.0 GB",
+    "price": "₦1500.0",
+    "validity": "30 days"
+  },
+  {
+    "id": 249,
+    "network": "9MOBILE",
+    "plan_type": "SME",
+    "data_volume": "10.0 GB",
+    "price": "₦3000.0",
+    "validity": "30 days"
+  },
+  {
+    "id": 256,
+    "network": "9MOBILE",
+    "plan_type": "SME",
+    "data_volume": "40.0 GB",
+    "price": "₦9100.0",
+    "validity": "30 days"
+  },
+  {
+    "id": 272,
+    "network": "9MOBILE",
+    "plan_type": "CORPORATE GIFTING",
+    "data_volume": "1.0 GB",
+    "price": "₦280.0",
+    "validity": "30 days"
+  },
+  {
+    "id": 273,
+    "network": "9MOBILE",
+    "plan_type": "CORPORATE GIFTING",
+    "data_volume": "1.5 GB",
+    "price": "₦255.0",
+    "validity": "30 days"
+  },
+  {
+    "id": 274,
+    "network": "9MOBILE",
+    "plan_type": "CORPORATE GIFTING",
+    "data_volume": "2.0 GB",
+    "price": "₦340.0",
+    "validity": "30 days"
+  },
+  {
+    "id": 275,
+    "network": "9MOBILE",
+    "plan_type": "CORPORATE GIFTING",
+    "data_volume": "500.0 MB",
+    "price": "₦85.0",
+    "validity": "30 days"
+  },
+  {
+    "id": 276,
+    "network": "9MOBILE",
+    "plan_type": "CORPORATE GIFTING",
+    "data_volume": "2.5 GB",
+    "price": "₦425.0",
+    "validity": "30 days"
+  },
+  {
+    "id": 277,
+    "network": "9MOBILE",
+    "plan_type": "CORPORATE GIFTING",
+    "data_volume": "3.0 GB",
+    "price": "₦840.0",
+    "validity": "30 days"
+  },
+  {
+    "id": 278,
+    "network": "9MOBILE",
+    "plan_type": "CORPORATE GIFTING",
+    "data_volume": "4.0 GB",
+    "price": "₦680.0",
+    "validity": "30 days"
+  },
+  {
+    "id": 279,
+    "network": "9MOBILE",
+    "plan_type": "CORPORATE GIFTING",
+    "data_volume": "4.5 GB",
+    "price": "₦765.0",
+    "validity": "30 days"
+  },
+  {
+    "id": 280,
+    "network": "9MOBILE",
+    "plan_type": "CORPORATE GIFTING",
+    "data_volume": "10.0 GB",
+    "price": "₦1350.0",
+    "validity": "30 days"
+  },
+  {
+    "id": 281,
+    "network": "9MOBILE",
+    "plan_type": "CORPORATE GIFTING",
+    "data_volume": "15.0 GB",
+    "price": "₦2025.0",
+    "validity": "30 days"
+  },
+  {
+    "id": 282,
+    "network": "9MOBILE",
+    "plan_type": "CORPORATE GIFTING",
+    "data_volume": "20.0 GB",
+    "price": "₦2700.0",
+    "validity": "30 days"
+  },
+  {
+    "id": 283,
+    "network": "9MOBILE",
+    "plan_type": "CORPORATE GIFTING",
+    "data_volume": "30.0 GB",
+    "price": "₦4050.0",
+    "validity": "30 days"
+  },
+  {
+    "id": 284,
+    "network": "9MOBILE",
+    "plan_type": "CORPORATE GIFTING",
+    "data_volume": "75.0 GB",
+    "price": "₦10125.0",
+    "validity": "30 days"
+  },
+  {
+    "id": 285,
+    "network": "9MOBILE",
+    "plan_type": "CORPORATE GIFTING",
+    "data_volume": "100.0 GB",
+    "price": "₦13500.0",
+    "validity": "30 days"
+  },
+  {
+    "id": 286,
+    "network": "9MOBILE",
+    "plan_type": "CORPORATE GIFTING",
+    "data_volume": "50.0 GB",
+    "price": "₦6750.0",
+    "validity": "30 days"
+  },
+  {
+    "id": 295,
+    "network": "9MOBILE",
+    "plan_type": "CORPORATE GIFTING",
+    "data_volume": "5.0 GB",
+    "price": "₦1400.0",
+    "validity": "30 days"
+  },
+  {
+    "id": 437,
+    "network": "AIRTEL",
+    "plan_type": "AWOOF GIFTING",
+    "data_volume": "60.0 GB",
+    "price": "₦14550.0",
+    "validity": "30 days"
+  },
+  {
+    "id": 389,
+    "network": "AIRTEL",
+    "plan_type": "GIFTING",
+    "data_volume": "18.0 GB",
+    "price": "₦5850.0",
+    "validity": "30 days"
+  },
+  {
+    "id": 387,
+    "network": "AIRTEL",
+    "plan_type": "GIFTING",
+    "data_volume": "160.0 GB",
+    "price": "₦29250.0",
+    "validity": "30 days"
+  },
+  {
+    "id": 388,
+    "network": "AIRTEL",
+    "plan_type": "GIFTING",
+    "data_volume": "1.5 GB",
+    "price": "₦589.0",
+    "validity": "2 days"
+  },
+  {
+    "id": 386,
+    "network": "AIRTEL",
+    "plan_type": "GIFTING",
+    "data_volume": "8.0 GB",
+    "price": "₦2925.0",
+    "validity": "30 days"
+  },
+  {
+    "id": 125,
+    "network": "AIRTEL",
+    "plan_type": "GIFTING",
+    "data_volume": "1.0 GB",
+    "price": "₦780.0",
+    "validity": "7 days"
+  },
+  {
+    "id": 126,
+    "network": "AIRTEL",
+    "plan_type": "GIFTING",
+    "data_volume": "2.0 GB",
+    "price": "₦732.0",
+    "validity": "2 days"
+  },
+  {
+    "id": 129,
+    "network": "AIRTEL",
+    "plan_type": "GIFTING",
+    "data_volume": "13.0 GB",
+    "price": "₦4875.0",
+    "validity": "30 days"
+  },
+  {
+    "id": 443,
+    "network": "AIRTEL",
+    "plan_type": "AWOOF GIFTING",
+    "data_volume": "1.5 GB",
+    "price": "₦400.0",
+    "validity": "1 day"
+  },
+  {
+    "id": 131,
+    "network": "AIRTEL",
+    "plan_type": "GIFTING",
+    "data_volume": "1.5 GB",
+    "price": "₦980.0",
+    "validity": "7 days"
+  },
+  {
+    "id": 407,
+    "network": "AIRTEL",
+    "plan_type": "GIFTING",
+    "data_volume": "3.0 GB",
+    "price": "₦975.0",
+    "validity": "2 days"
+  },
+  {
+    "id": 133,
+    "network": "AIRTEL",
+    "plan_type": "GIFTING",
+    "data_volume": "3.0 GB",
+    "price": "₦1950.0",
+    "validity": "30 days"
+  },
+  {
+    "id": 134,
+    "network": "AIRTEL",
+    "plan_type": "GIFTING",
+    "data_volume": "4.0 GB",
+    "price": "₦2437.0",
+    "validity": "30 days"
+  },
+  {
+    "id": 135,
+    "network": "AIRTEL",
+    "plan_type": "GIFTING",
+    "data_volume": "6.0 GB",
+    "price": "₦2437.0",
+    "validity": "7 days"
+  },
+  {
+    "id": 136,
+    "network": "AIRTEL",
+    "plan_type": "GIFTING",
+    "data_volume": "10.0 GB",
+    "price": "₦3900.0",
+    "validity": "30 days"
+  },
+  {
+    "id": 137,
+    "network": "AIRTEL",
+    "plan_type": "GIFTING",
+    "data_volume": "18.0 GB",
+    "price": "₦4875.0",
+    "validity": "7 days"
+  },
+  {
+    "id": 138,
+    "network": "AIRTEL",
+    "plan_type": "GIFTING",
+    "data_volume": "10.0 GB",
+    "price": "₦2925.0",
+    "validity": "7 days"
+  },
+  {
+    "id": 139,
+    "network": "AIRTEL",
+    "plan_type": "GIFTING",
+    "data_volume": "25.0 GB",
+    "price": "₦7800.0",
+    "validity": "30 days"
+  },
+  {
+    "id": 140,
+    "network": "AIRTEL",
+    "plan_type": "GIFTING",
+    "data_volume": "75.0 GB",
+    "price": "₦14630.0",
+    "validity": "30 days ROUTER PLAN"
+  },
+  {
+    "id": 141,
+    "network": "AIRTEL",
+    "plan_type": "GIFTING",
+    "data_volume": "100.0 GB",
+    "price": "₦19500.0",
+    "validity": "30 days"
+  },
+  {
+    "id": 212,
+    "network": "AIRTEL",
+    "plan_type": "CORPORATE GIFTING",
+    "data_volume": "500.0 MB",
+    "price": "₦480.0",
+    "validity": "30 days"
+  },
+  {
+    "id": 213,
+    "network": "AIRTEL",
+    "plan_type": "CORPORATE GIFTING",
+    "data_volume": "1.0 GB",
+    "price": "₦960.0",
+    "validity": "30 days"
+  },
+  {
+    "id": 214,
+    "network": "AIRTEL",
+    "plan_type": "CORPORATE GIFTING",
+    "data_volume": "2.0 GB",
+    "price": "₦1920.0",
+    "validity": "30 days"
+  },
+  {
+    "id": 215,
+    "network": "AIRTEL",
+    "plan_type": "CORPORATE GIFTING",
+    "data_volume": "5.0 GB",
+    "price": "₦4800.0",
+    "validity": "30 days"
+  },
+  {
+    "id": 216,
+    "network": "AIRTEL",
+    "plan_type": "CORPORATE GIFTING",
+    "data_volume": "100.0 MB",
+    "price": "₦95.0",
+    "validity": "7 days"
+  },
+  {
+    "id": 217,
+    "network": "AIRTEL",
+    "plan_type": "CORPORATE GIFTING",
+    "data_volume": "300.0 MB",
+    "price": "₦288.0",
+    "validity": "7 days"
+  },
+  {
+    "id": 231,
+    "network": "AIRTEL",
+    "plan_type": "CORPORATE GIFTING",
+    "data_volume": "10.0 GB",
+    "price": "₦9600.0",
+    "validity": "30 days"
+  },
+  {
+    "id": 232,
+    "network": "AIRTEL",
+    "plan_type": "CORPORATE GIFTING",
+    "data_volume": "15.0 GB",
+    "price": "₦14400.0",
+    "validity": "30 days"
+  },
+  {
+    "id": 233,
+    "network": "AIRTEL",
+    "plan_type": "CORPORATE GIFTING",
+    "data_volume": "20.0 GB",
+    "price": "₦19200.0",
+    "validity": "30 days"
+  },
+  {
+    "id": 298,
+    "network": "AIRTEL",
+    "plan_type": "GIFTING",
+    "data_volume": "35.0 GB",
+    "price": "₦9750.0",
+    "validity": "7 days Unltd Ultra Router"
+  },
+  {
+    "id": 432,
+    "network": "AIRTEL",
+    "plan_type": "AWOOF GIFTING",
+    "data_volume": "250.0 MB",
+    "price": "₦50.0",
+    "validity": "1 day Night Plan"
+  },
+  {
+    "id": 300,
+    "network": "AIRTEL",
+    "plan_type": "GIFTING",
+    "data_volume": "1.0 GB",
+    "price": "₦488.0",
+    "validity": "1 day"
+  },
+  {
+    "id": 313,
+    "network": "AIRTEL",
+    "plan_type": "AWOOF GIFTING",
+    "data_volume": "150.0 MB",
+    "price": "₦50.0",
+    "validity": "1 day"
+  },
+  {
+    "id": 436,
+    "network": "AIRTEL",
+    "plan_type": "AWOOF GIFTING",
+    "data_volume": "35.0 GB",
+    "price": "₦9700.0",
+    "validity": "30 days"
+  },
+  {
+    "id": 420,
+    "network": "AIRTEL",
+    "plan_type": "AWOOF GIFTING",
+    "data_volume": "2.0 GB",
+    "price": "₦540.0",
+    "validity": "2 days"
+  },
+  {
+    "id": 441,
+    "network": "AIRTEL",
+    "plan_type": "AWOOF GIFTING",
+    "data_volume": "18.0 GB",
+    "price": "₦5000.0",
+    "validity": "7 days"
+  },
+  {
+    "id": 317,
+    "network": "AIRTEL",
+    "plan_type": "AWOOF GIFTING",
+    "data_volume": "7.0 GB",
+    "price": "₦2000.0",
+    "validity": "7 days"
+  },
+  {
+    "id": 318,
+    "network": "AIRTEL",
+    "plan_type": "AWOOF GIFTING",
+    "data_volume": "10.0 GB",
+    "price": "₦3000.0",
+    "validity": "30 days"
+  },
+  {
+    "id": 414,
+    "network": "AIRTEL",
+    "plan_type": "GIFTING",
+    "data_volume": "500.0 MB",
+    "price": "₦488.0",
+    "validity": "7 days"
+  },
+  {
+    "id": 435,
+    "network": "AIRTEL",
+    "plan_type": "AWOOF GIFTING",
+    "data_volume": "25.0 GB",
+    "price": "₦7760.0",
+    "validity": "30 days"
+  },
+  {
+    "id": 390,
+    "network": "AIRTEL",
+    "plan_type": "AWOOF GIFTING",
+    "data_volume": "13.0 GB",
+    "price": "₦4850.0",
+    "validity": "30 days"
+  },
+  {
+    "id": 413,
+    "network": "AIRTEL",
+    "plan_type": "GIFTING",
+    "data_volume": "300.0 MB",
+    "price": "₦293.0",
+    "validity": "2 days"
+  },
+  {
+    "id": 412,
+    "network": "AIRTEL",
+    "plan_type": "GIFTING",
+    "data_volume": "100.0 MB",
+    "price": "₦98.0",
+    "validity": "1 day"
+  },
+  {
+    "id": 408,
+    "network": "AIRTEL",
+    "plan_type": "GIFTING",
+    "data_volume": "3.5 GB",
+    "price": "₦1463.0",
+    "validity": "7 days"
+  },
+  {
+    "id": 409,
+    "network": "AIRTEL",
+    "plan_type": "GIFTING",
+    "data_volume": "5.0 GB",
+    "price": "₦1463.0",
+    "validity": "2 days"
+  },
+  {
+    "id": 410,
+    "network": "AIRTEL",
+    "plan_type": "GIFTING",
+    "data_volume": "60.0 GB",
+    "price": "₦14625.0",
+    "validity": "30 days"
+  },
+  {
+    "id": 411,
+    "network": "AIRTEL",
+    "plan_type": "GIFTING",
+    "data_volume": "75.0 MB",
+    "price": "₦74.0",
+    "validity": "1 day"
+  },
+  {
+    "id": 406,
+    "network": "AIRTEL",
+    "plan_type": "GIFTING",
+    "data_volume": "2.0 GB",
+    "price": "₦1463.0",
+    "validity": "30 days"
+  },
+  {
+    "id": 442,
+    "network": "AIRTEL",
+    "plan_type": "AWOOF GIFTING",
+    "data_volume": "1.0 GB",
+    "price": "₦350.0",
+    "validity": "1 day"
+  },
+  {
+    "id": 431,
+    "network": "AIRTEL",
+    "plan_type": "AWOOF GIFTING",
+    "data_volume": "1.5 GB",
+    "price": "₦600.0",
+    "validity": "2 days binge data"
+  },
+  {
+    "id": 429,
+    "network": "AIRTEL",
+    "plan_type": "AWOOF GIFTING",
+    "data_volume": "1.0 GB",
+    "price": "₦300.0",
+    "validity": "2 days Social Bundle"
+  },
+  {
+    "id": 434,
+    "network": "AIRTEL",
+    "plan_type": "AWOOF GIFTING",
+    "data_volume": "1.5 GB",
+    "price": "₦970.0",
+    "validity": "7 days (Weekly plan)"
+  },
+  {
+    "id": 438,
+    "network": "AIRTEL",
+    "plan_type": "AWOOF GIFTING",
+    "data_volume": "100.0 GB",
+    "price": "₦20000.0",
+    "validity": "30 days"
+  },
+  {
+    "id": 439,
+    "network": "AIRTEL",
+    "plan_type": "AWOOF GIFTING",
+    "data_volume": "3.5 GB",
+    "price": "₦1455.0",
+    "validity": "7 days Weekly Plan"
+  },
+  {
+    "id": 444,
+    "network": "AIRTEL",
+    "plan_type": "AWOOF GIFTING",
+    "data_volume": "2.0 GB",
+    "price": "₦750.0",
+    "validity": "2 days"
+  },
+  {
+    "id": 445,
+    "network": "AIRTEL",
+    "plan_type": "AWOOF GIFTING",
+    "data_volume": "500.0 MB",
+    "price": "₦500.0",
+    "validity": "7 days"
+  },
+  {
+    "id": 446,
+    "network": "AIRTEL",
+    "plan_type": "AWOOF GIFTING",
+    "data_volume": "1.5 GB",
+    "price": "₦500.0",
+    "validity": "7 days Social Plan"
+  },
+  {
+    "id": 450,
+    "network": "AIRTEL",
+    "plan_type": "AWOOF GIFTING",
+    "data_volume": "300.0 MB",
+    "price": "₦100.0",
+    "validity": "2 days"
+  },
+  {
+    "id": 451,
+    "network": "AIRTEL",
+    "plan_type": "AWOOF GIFTING",
+    "data_volume": "600.0 MB",
+    "price": "₦200.0",
+    "validity": "2 days"
+  },
+  {
+    "id": 452,
+    "network": "AIRTEL",
+    "plan_type": "AWOOF GIFTING",
+    "data_volume": "6.0 GB",
+    "price": "₦2500.0",
+    "validity": "7 days"
+  },
+  {
+    "id": 453,
+    "network": "AIRTEL",
+    "plan_type": "AWOOF GIFTING",
+    "data_volume": "3.0 GB",
+    "price": "₦1000.0",
+    "validity": "2 days"
+  },
+  {
+    "id": 454,
+    "network": "AIRTEL",
+    "plan_type": "AWOOF GIFTING",
+    "data_volume": "75.0 MB",
+    "price": "₦75.0",
+    "validity": "1 day"
+  },
+  {
+    "id": 455,
+    "network": "AIRTEL",
+    "plan_type": "AWOOF GIFTING",
+    "data_volume": "10.0 GB",
+    "price": "₦3000.0",
+    "validity": "7 days"
+  },
+  { "id": 27, "network": "GLO", "plan_type": "GIFTING", "price": "₦3720.0", "data_volume": "12.5 GB", "validity": "30 days 12GB day + 2GB nite = 12GB" },
+  { "id": 28, "network": "GLO", "plan_type": "GIFTING", "price": "₦2790.0", "data_volume": "10.0 GB", "validity": "30 days 8GB day + 2GB nite = 10GB" },
+  { "id": 29, "network": "GLO", "plan_type": "GIFTING", "price": "₦2325.0", "data_volume": "7.5 GB", "validity": "30 days 4.5GB day + 3GB nite = 7.5GB" },
+  { "id": 30, "network": "GLO", "plan_type": "GIFTING", "price": "₦1860.0", "data_volume": "6.15 GB", "validity": "30 days 3.15GB day + 3GB nite = 6.25GB" },
+  { "id": 31, "network": "GLO", "plan_type": "GIFTING", "price": "₦1395.0", "data_volume": "5.0 GB", "validity": "30 days 2GB day + 3GB nite = 5GB" },
+  { "id": 32, "network": "GLO", "plan_type": "GIFTING", "price": "₦930.0", "data_volume": "2.6 GB", "validity": "30 days 1.1GB day + 1.5GB nite = 2.6GB" },
+  { "id": 37, "network": "GLO", "plan_type": "GIFTING", "price": "₦465.0", "data_volume": "1.5 GB", "validity": "7 days 500MB day + 1GB nite" },
+  { "id": 73, "network": "GLO", "plan_type": "GIFTING", "price": "₦5580.0", "data_volume": "20.5 GB", "validity": "30 days 18GB day + 2GB nite" },
+  { "id": 74, "network": "GLO", "plan_type": "GIFTING", "price": "₦9300.0", "data_volume": "38.0 GB", "validity": "30 days" },
+  { "id": 75, "network": "GLO", "plan_type": "GIFTING", "price": "₦4650.0", "data_volume": "16.0 GB", "validity": "30 days" },
+  { "id": 143, "network": "GLO", "plan_type": "GIFTING", "price": "₦13950.0", "data_volume": "64.0 GB", "validity": "30 days" },
+  { "id": 144, "network": "GLO", "plan_type": "GIFTING", "price": "₦18600.0", "data_volume": "107.0 GB", "validity": "30 days" },
+  { "id": 207, "network": "GLO", "plan_type": "GIFTING", "price": "₦7440.0", "data_volume": "28.0 GB", "validity": "30 days" },
+  { "id": 250, "network": "GLO", "plan_type": "GIFTING", "price": "₦1860.0", "data_volume": "8.5 GB", "validity": "7 days 6GB day + 2.5GB nite = 8.5GB" },
+  { "id": 251, "network": "GLO", "plan_type": "GIFTING", "price": "₦930.0", "data_volume": "3.5 GB", "validity": "7 days 1.5GB day + 2GB nite = 3.5GB" },
+  { "id": 252, "network": "GLO", "plan_type": "GIFTING", "price": "₦698.0", "data_volume": "1.1 GB", "validity": "14 days" },
+  { "id": 258, "network": "GLO", "plan_type": "CORPORATE GIFTING", "price": "₦191.0", "data_volume": "500.0 MB", "validity": "30 days" },
+  { "id": 262, "network": "GLO", "plan_type": "CORPORATE GIFTING", "price": "₦764.0", "data_volume": "2.0 GB", "validity": "30 days" },
+  { "id": 261, "network": "GLO", "plan_type": "CORPORATE GIFTING", "price": "₦382.0", "data_volume": "1.0 GB", "validity": "30 days" },
+  { "id": 263, "network": "GLO", "plan_type": "CORPORATE GIFTING", "price": "₦1146.0", "data_volume": "3.0 GB", "validity": "30 days" },
+  { "id": 265, "network": "GLO", "plan_type": "CORPORATE GIFTING", "price": "₦3820.0", "data_volume": "10.0 GB", "validity": "30 days" },
+  { "id": 296, "network": "GLO", "plan_type": "CORPORATE GIFTING", "price": "₦72.0", "data_volume": "200.0 MB", "validity": "14 days" },
+  { "id": 297, "network": "GLO", "plan_type": "CORPORATE GIFTING", "price": "₦1915.0", "data_volume": "5.0 GB", "validity": "30 days" },
+  { "id": 321, "network": "GLO", "plan_type": "AWOOF GIFTING", "price": "₦190.0", "data_volume": "750.0 MB", "validity": "1 day" },
+  { "id": 322, "network": "GLO", "plan_type": "AWOOF GIFTING", "price": "₦285.0", "data_volume": "1.5 GB", "validity": "1 day" },
+  { "id": 323, "network": "GLO", "plan_type": "AWOOF GIFTING", "price": "₦475.0", "data_volume": "2.5 GB", "validity": "2 days" },
+  { "id": 324, "network": "GLO", "plan_type": "AWOOF GIFTING", "price": "₦1900.0", "data_volume": "10.0 GB", "validity": "7 days" },
+  { "id": 426, "network": "GLO", "plan_type": "GIFTING", "price": "₦4650.0", "data_volume": "20.5 GB", "validity": "7 days" },
+  { "id": 447, "network": "GLO", "plan_type": "CORPORATE GIFTING", "price": "₦315.0", "data_volume": "1.0 GB", "validity": "7 days" },
+  { "id": 448, "network": "GLO", "plan_type": "CORPORATE GIFTING", "price": "₦945.0", "data_volume": "3.0 GB", "validity": "7 days" },
+  { "id": 449, "network": "GLO", "plan_type": "CORPORATE GIFTING", "price": "₦1575.0", "data_volume": "5.0 GB", "validity": "7 days" },
+  {
+    "id": 230,
+    "network": "MTN",
+    "plan_type": "SME",
+    "price": "₦2407.0",
+    "data_volume": "3.5 GB",
+    "validity": "30 days"
+  },
+  {
+    "id": 50,
+    "network": "MTN",
+    "plan_type": "SME",
+    "price": "₦1448.0",
+    "data_volume": "2.0 GB",
+    "validity": "30 days"
+  },
+  {
+    "id": 51,
+    "network": "MTN",
+    "plan_type": "SME",
+    "price": "₦964.0",
+    "data_volume": "1.5 GB",
+    "validity": "7 days"
+  },
+  {
+    "id": 394,
+    "network": "MTN",
+    "plan_type": "SME",
+    "price": "₦485.0",
+    "data_volume": "500.0 MB",
+    "validity": "7 days"
+  },
+  {
+    "id": 458,
+    "network": "MTN",
+    "plan_type": "DATA SHARE",
+    "price": "₦455.0",
+    "data_volume": "500.0 MB",
+    "validity": "30 days"
+  },
+  {
+    "id": 456,
+    "network": "MTN",
+    "plan_type": "DATA SHARE",
+    "price": "₦610.0",
+    "data_volume": "1.0 GB",
+    "validity": "7 days"
+  },
+  {
+    "id": 99,
+    "network": "MTN",
+    "plan_type": "CORPORATE GIFTING",
+    "price": "₦410.0",
+    "data_volume": "500.0 MB",
+    "validity": "30 days"
+  },
+  {
+    "id": 100,
+    "network": "MTN",
+    "plan_type": "CORPORATE GIFTING",
+    "price": "₦820.0",
+    "data_volume": "1.0 GB",
+    "validity": "30 days"
+  },
+  {
+    "id": 101,
+    "network": "MTN",
+    "plan_type": "CORPORATE GIFTING",
+    "price": "₦1640.0",
+    "data_volume": "2.0 GB",
+    "validity": "30 days"
+  },
+  {
+    "id": 384,
+    "network": "MTN",
+    "plan_type": "GIFTING",
+    "price": "₦48500.0",
+    "data_volume": "200.0 GB",
+    "validity": "60 days"
+  },
+  {
+    "id": 385,
+    "network": "MTN",
+    "plan_type": "GIFTING",
+    "price": "₦6305.0",
+    "data_volume": "16.5 GB",
+    "validity": "30 days"
+  },
+  {
+    "id": 393,
+    "network": "MTN",
+    "plan_type": "AWOOF GIFTING",
+    "price": "₦970.0",
+    "data_volume": "1.5 GB",
+    "validity": "7 days"
+  },
+  {
+    "id": 382,
+    "network": "MTN",
+    "plan_type": "GIFTING",
+    "price": "₦33950.0",
+    "data_volume": "165.0 GB",
+    "validity": "60 days"
+  },
+  {
+    "id": 380,
+    "network": "MTN",
+    "plan_type": "GIFTING",
+    "price": "₦53350.0",
+    "data_volume": "250.0 GB",
+    "validity": "30 days"
+  },
+  {
+    "id": 381,
+    "network": "MTN",
+    "plan_type": "GIFTING",
+    "price": "₦6790.0",
+    "data_volume": "35.0 GB",
+    "validity": "30 days"
+  },
+  {
+    "id": 379,
+    "network": "MTN",
+    "plan_type": "GIFTING",
+    "price": "₦10670.0",
+    "data_volume": "36.0 GB",
+    "validity": "30 days"
+  },
+  {
+    "id": 397,
+    "network": "MTN",
+    "plan_type": "GIFTING",
+    "price": "₦4365.0",
+    "data_volume": "10.0 GB",
+    "validity": "30 days"
+  },
+  {
+    "id": 378,
+    "network": "MTN",
+    "plan_type": "GIFTING",
+    "price": "₦970.0",
+    "data_volume": "3.2 GB",
+    "validity": "2 days"
+  },
+  {
+    "id": 116,
+    "network": "MTN",
+    "plan_type": "CORPORATE GIFTING",
+    "price": "₦4100.0",
+    "data_volume": "5.0 GB",
+    "validity": "30 days"
+  },
+  {
+    "id": 355,
+    "network": "MTN",
+    "plan_type": "GIFTING",
+    "price": "₦970.0",
+    "data_volume": "1.5 GB",
+    "validity": "7 days"
+  },
+  {
+    "id": 400,
+    "network": "MTN",
+    "plan_type": "GIFTING",
+    "price": "₦8730.0",
+    "data_volume": "40.0 GB",
+    "validity": "60 days"
+  },
+  {
+    "id": 146,
+    "network": "MTN",
+    "plan_type": "CORPORATE GIFTING",
+    "price": "₦8100.0",
+    "data_volume": "10.0 GB",
+    "validity": "30 days"
+  },
+  {
+    "id": 149,
+    "network": "MTN",
+    "plan_type": "CORPORATE GIFTING",
+    "price": "₦16400.0",
+    "data_volume": "20.0 GB",
+    "validity": "30 days"
+  },
+  {
+    "id": 150,
+    "network": "MTN",
+    "plan_type": "SME",
+    "price": "₦4344.0",
+    "data_volume": "10.0 GB",
+    "validity": "30 days"
+  },
+  {
+    "id": 208,
+    "network": "MTN",
+    "plan_type": "CORPORATE GIFTING",
+    "price": "₦12300.0",
+    "data_volume": "15.0 GB",
+    "validity": "30 days"
+  },
+  {
+    "id": 209,
+    "network": "MTN",
+    "plan_type": "CORPORATE GIFTING",
+    "price": "₦32800.0",
+    "data_volume": "40.0 GB",
+    "validity": "30 days"
+  },
+  {
+    "id": 210,
+    "network": "MTN",
+    "plan_type": "CORPORATE GIFTING",
+    "price": "₦61500.0",
+    "data_volume": "75.0 GB",
+    "validity": "30 days"
+  },
+  {
+    "id": 211,
+    "network": "MTN",
+    "plan_type": "CORPORATE GIFTING",
+    "price": "₦82000.0",
+    "data_volume": "100.0 GB",
+    "validity": "30 days"
+  },
+  {
+    "id": 226,
+    "network": "MTN",
+    "plan_type": "CORPORATE GIFTING",
+    "price": "₦2460.0",
+    "data_volume": "3.0 GB",
+    "validity": "30 days"
+  },
+  {
+    "id": 376,
+    "network": "MTN",
+    "plan_type": "AWOOF GIFTING",
+    "price": "₦3395.0",
+    "data_volume": "11.0 GB",
+    "validity": "7 days"
+  },
+  {
+    "id": 377,
+    "network": "MTN",
+    "plan_type": "GIFTING",
+    "price": "₦728.0",
+    "data_volume": "1.2 GB",
+    "validity": "7 days"
+  },
+  {
+    "id": 398,
+    "network": "MTN",
+    "plan_type": "GIFTING",
+    "price": "₦5335.0",
+    "data_volume": "12.5 GB",
+    "validity": "30 days"
+  },
+  {
+    "id": 360,
+    "network": "MTN",
+    "plan_type": "GIFTING",
+    "price": "₦17460.0",
+    "data_volume": "75.0 GB",
+    "validity": "30 days"
+  },
+  {
+    "id": 253,
+    "network": "MTN",
+    "plan_type": "CORPORATE GIFTING",
+    "price": "₦205.0",
+    "data_volume": "250.0 MB",
+    "validity": "30 days"
+  },
+  {
+    "id": 254,
+    "network": "MTN",
+    "plan_type": "CORPORATE GIFTING",
+    "price": "₦150.0",
+    "data_volume": "150.0 MB",
+    "validity": "30 days"
+  },
+  {
+    "id": 255,
+    "network": "MTN",
+    "plan_type": "CORPORATE GIFTING",
+    "price": "₦52.0",
+    "data_volume": "50.0 MB",
+    "validity": "30 days"
+  },
+  {
+    "id": 266,
+    "network": "MTN",
+    "plan_type": "SME2",
+    "price": "₦266.0",
+    "data_volume": "1.0 GB",
+    "validity": "30 days"
+  },
+  {
+    "id": 267,
+    "network": "MTN",
+    "plan_type": "SME2",
+    "price": "₦550.0",
+    "data_volume": "2.0 GB",
+    "validity": "30 days"
+  },
+  {
+    "id": 268,
+    "network": "MTN",
+    "plan_type": "SME2",
+    "price": "₦798.0",
+    "data_volume": "3.0 GB",
+    "validity": "30 days"
+  },
+  {
+    "id": 269,
+    "network": "MTN",
+    "plan_type": "SME2",
+    "price": "₦1375.0",
+    "data_volume": "5.0 GB",
+    "validity": "30 days"
+  },
+  {
+    "id": 270,
+    "network": "MTN",
+    "plan_type": "SME2",
+    "price": "₦2660.0",
+    "data_volume": "10.0 GB",
+    "validity": "30 days"
+  },
+  {
+    "id": 271,
+    "network": "MTN",
+    "plan_type": "SME2",
+    "price": "₦133.0",
+    "data_volume": "500.0 MB",
+    "validity": "30 days"
+  },
+  {
+    "id": 418,
+    "network": "MTN",
+    "plan_type": "AWOOF GIFTING",
+    "data_volume": "1.8 GB",
+    "price": "₦1448.0",
+    "validity": "30 days plus 335 airtime"
+  },
+  {
+    "id": 416,
+    "network": "MTN",
+    "plan_type": "GIFTING",
+    "data_volume": "1.5 GB",
+    "price": "₦582.0",
+    "validity": "2 days"
+  },
+  {
+    "id": 375,
+    "network": "MTN",
+    "plan_type": "GIFTING",
+    "data_volume": "2.7 GB",
+    "price": "₦1940.0",
+    "validity": "30 days"
+  },
+  {
+    "id": 403,
+    "network": "MTN",
+    "plan_type": "GIFTING",
+    "data_volume": "110.0 MB",
+    "price": "₦98.0",
+    "validity": "1 day"
+  },
+  {
+    "id": 404,
+    "network": "MTN",
+    "plan_type": "GIFTING",
+    "data_volume": "75.0 MB",
+    "price": "₦74.0",
+    "validity": "1 day"
+  },
+  {
+    "id": 401,
+    "network": "MTN",
+    "plan_type": "GIFTING",
+    "data_volume": "500.0 MB",
+    "price": "₦485.0",
+    "validity": "7 days"
+  },
+  {
+    "id": 402,
+    "network": "MTN",
+    "plan_type": "GIFTING",
+    "data_volume": "230.0 MB",
+    "price": "₦194.0",
+    "validity": "1 day"
+  },
+  {
+    "id": 457,
+    "network": "MTN",
+    "plan_type": "DATA SHARE",
+    "data_volume": "1.0 GB",
+    "price": "₦710.0",
+    "validity": "30 days"
+  },
+  {
+    "id": 309,
+    "network": "MTN",
+    "plan_type": "DATA SHARE",
+    "data_volume": "5.0 GB",
+    "price": "₦1800.0",
+    "validity": "30 days"
+  },
+  {
+    "id": 310,
+    "network": "MTN",
+    "plan_type": "AWOOF GIFTING",
+    "data_volume": "1.0 GB",
+    "price": "₦483.0",
+    "validity": "1 day"
+  },
+  {
+    "id": 311,
+    "network": "MTN",
+    "plan_type": "AWOOF GIFTING",
+    "data_volume": "3.2 GB",
+    "price": "₦970.0",
+    "validity": "2 days"
+  },
+  {
+    "id": 312,
+    "network": "MTN",
+    "plan_type": "AWOOF GIFTING",
+    "data_volume": "6.75 GB",
+    "price": "₦2910.0",
+    "validity": "7 days"
+  },
+  {
+    "id": 374,
+    "network": "MTN",
+    "plan_type": "GIFTING",
+    "data_volume": "6.75 GB",
+    "price": "₦2910.0",
+    "validity": "7 days"
+  },
+  {
+    "id": 373,
+    "network": "MTN",
+    "plan_type": "GIFTING",
+    "data_volume": "2.5 GB",
+    "price": "₦730.0",
+    "validity": "1 day"
+  },
+  {
+    "id": 396,
+    "network": "MTN",
+    "plan_type": "GIFTING",
+    "data_volume": "3.5 GB",
+    "price": "₦2428.0",
+    "validity": "30 days"
+  },
+  {
+    "id": 371,
+    "network": "MTN",
+    "plan_type": "GIFTING",
+    "data_volume": "2.0 GB",
+    "price": "₦1455.0",
+    "validity": "30 days"
+  },
+  {
+    "id": 391,
+    "network": "MTN",
+    "plan_type": "AWOOF GIFTING",
+    "data_volume": "6.0 GB",
+    "price": "₦2425.0",
+    "validity": "7 days"
+  },
+  {
+    "id": 368,
+    "network": "MTN",
+    "plan_type": "GIFTING",
+    "data_volume": "2.5 GB",
+    "price": "₦873.0",
+    "validity": "2 days"
+  },
+  {
+    "id": 367,
+    "network": "MTN",
+    "plan_type": "GIFTING",
+    "data_volume": "90.0 GB",
+    "price": "₦24250.0",
+    "validity": "60 days"
+  },
+  {
+    "id": 417,
+    "network": "MTN",
+    "plan_type": "SME",
+    "data_volume": "6.0 GB",
+    "price": "₦2402.0",
+    "validity": "7 days"
+  },
+  {
+    "id": 399,
+    "network": "MTN",
+    "plan_type": "AWOOF GIFTING",
+    "data_volume": "14.5 GB",
+    "price": "₦4850.0",
+    "validity": "7 days Xtra Special Tariff"
+  },
+  {
+    "id": 364,
+    "network": "MTN",
+    "plan_type": "GIFTING",
+    "data_volume": "2.0 GB",
+    "price": "₦728.0",
+    "validity": "2 days"
+  },
+  {
+    "id": 365,
+    "network": "MTN",
+    "plan_type": "GIFTING",
+    "data_volume": "1.0 GB",
+    "price": "₦780.0",
+    "validity": "7 days direct data"
+  },
+  {
+    "id": 366,
+    "network": "MTN",
+    "plan_type": "GIFTING",
+    "data_volume": "750.0 MB",
+    "price": "₦438.0",
+    "validity": "3 days"
+  },
+  {
+    "id": 421,
+    "network": "MTN",
+    "plan_type": "AWOOF GIFTING",
+    "data_volume": "20.0 GB",
+    "price": "₦4840.0",
+    "validity": "7 days"
+  },
+  {
+    "id": 422,
+    "network": "MTN",
+    "plan_type": "AWOOF GIFTING",
+    "data_volume": "20.0 GB",
+    "price": "₦4840.0",
+    "validity": "7 days"
+  },
+  {
+    "id": 423,
+    "network": "MTN",
+    "plan_type": "GIFTING",
+    "data_volume": "25.0 GB",
+    "price": "₦8700.0",
+    "validity": "30 days"
+  },
+  {
+    "id": 424,
+    "network": "MTN",
+    "plan_type": "GIFTING",
+    "data_volume": "20.0 GB",
+    "price": "₦7260.0",
+    "validity": "30 days"
+  },
+  {
+    "id": 425,
+    "network": "MTN",
+    "plan_type": "GIFTING",
+    "data_volume": "7.0 GB",
+    "price": "₦3380.0",
+    "validity": "7 days"
+  },
+  {
+    "id": 459,
+    "network": "MTN",
+    "plan_type": "DATA SHARE",
+    "data_volume": "2.0 GB",
+    "price": "₦1220.0",
+    "validity": "30 days"
+  },
+  {
+    "id": 460,
+    "network": "MTN",
+    "plan_type": "DATA SHARE",
+    "data_volume": "3.0 GB",
+    "price": "₦1850.0",
+    "validity": "30 days"
+  },
+  {
+    "id": 461,
+    "network": "MTN",
+    "plan_type": "GIFTING",
+    "data_volume": "500.0 MB",
+    "price": "₦339.0",
+    "validity": "1 day"
+  }
+]
