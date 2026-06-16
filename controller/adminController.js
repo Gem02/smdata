@@ -6,6 +6,7 @@ const TransactionModel = require('../models/transactions');
 const UserModel = require('../models/User');
 const VirtualAccount = require('../models/VirtualAccountModel');
 const validator = require('validator');
+const {saveTransaction} = require('../utilities/saveTransaction');
 const {sendStatusUpdateEmail} = require('../utilities/emailTemplate');
 
 const getAllUsers = async (req, res) => {
@@ -63,12 +64,38 @@ const addAccountBalance = async (req, res) => {
     //   return res.status(403).json({ message: 'Phone number mismatch' });
     // }
 
+    const oldBalance = account.balance;
     account.balance += Number(amount);
+    const newBalance = account.balance;
+    const transactionReference = `ADMIN-CREDIT-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
+
+    account.transactions.push({
+      type: 'credit',
+      amount: Number(amount),
+      description: 'Admin added funds',
+      oldBalance,
+      newBalance,
+      status: 'completed',
+      reference: transactionReference
+    });
+
     await account.save();
+
+    await saveTransaction({
+      user: userId,
+      amount: Number(amount),
+      transactionReference,
+      TransactionType: 'Admin-Credit',
+      type: 'credit',
+      status: 'success',
+      description: 'Admin added funds to user wallet',
+      oldBalance,
+      newBalance,
+    });
 
     return res.status(200).json({
       message: 'Balance updated successfully',
-      newBalance: account.balance,
+      newBalance,
     });
   } catch (error) {
     console.error('Error adding account balance:', error);
@@ -95,12 +122,38 @@ const debitAccountBalance = async (req, res) => {
     //   return res.status(403).json({ message: 'Phone number mismatch' });
     // }
 
+    const oldBalance = account.balance;
     account.balance -= Number(amount);
+    const newBalance = account.balance;
+    const transactionReference = `ADMIN-DEBIT-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
+
+    account.transactions.push({
+      type: 'debit',
+      amount: Number(amount),
+      description: 'Admin withdrew funds',
+      oldBalance,
+      newBalance,
+      status: 'completed',
+      reference: transactionReference
+    });
+
     await account.save();
+
+    await saveTransaction({
+      user: userId,
+      amount: Number(amount),
+      transactionReference,
+      TransactionType: 'Admin-Debit',
+      type: 'debit',
+      status: 'success',
+      description: 'Admin debited funds from user wallet',
+      oldBalance,
+      newBalance,
+    });
 
     return res.status(200).json({
       message: 'Balance debited successfully',
-      newBalance: account.balance,
+      newBalance,
     });
   } catch (error) {
     console.error('Error debiting account balance:', error);
