@@ -20,7 +20,7 @@ const app = express();
 
 connectDB();
 app.use(cors({
-  origin: ['http://localhost:5173',' https://smdata.com.ng','https://admin.smdata.com.ng'],
+  origin: ['http://localhost:5173','https://smdata.com.ng','https://admin.smdata.com.ng'],
   methods: 'GET,POST,PUT,DELETE,PATCH',
   credentials: true,
 }));
