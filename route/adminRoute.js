@@ -32,7 +32,7 @@ router.get('/dashboard/weekly/:adminUserId', verifyAdmin, getWeeklyStats);
 // ===== USER MANAGEMENT ENDPOINTS =====
 router.get('/users/:adminUserId', verifyAdmin, getAllUsers);
 router.get('/users/:userId/stats/:adminUserId', verifyAdmin, getUserStats);
-router.patch('/updateUser/:adminUserId', verifyAdmin, updateUser);
+router.put('/updateUser/:adminUserId', verifyAdmin, updateUser);
 router.delete('/deleteUser/:adminUserId', verifyAdmin, deleteUser);
 router.post('/addBalance/:adminUserId', verifyAdmin, addAccountBalance);
 router.post('/debitBalance/:adminUserId', verifyAdmin, debitAccountBalance);

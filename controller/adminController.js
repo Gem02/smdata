@@ -10,7 +10,7 @@ const {sendStatusUpdateEmail} = require('../utilities/emailTemplate');
 
 const getAllUsers = async (req, res) => {
   try {
-    const users = await UserModel.find().select('-password');
+    const users = await UserModel.find().sort({ createdAt: -1 }).select('-password');
 
     const wallets = await Wallet.find();
 
