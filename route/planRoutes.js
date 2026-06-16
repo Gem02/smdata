@@ -9,7 +9,7 @@ router.get('/network/:network', getPlansByNetwork);
 router.get('/:id', getPlanById);
 
 // Protected/Admin routes (add authentication middleware as needed)
-router.post('/all/:adminUserId', verifyAdmin, createPlan);
+router.post('/:adminUserId', verifyAdmin, createPlan);
 router.put('/:id/:adminUserId', verifyAdmin, updatePlan);
 router.delete('/:id/:adminUserId', verifyAdmin, deletePlan);
 router.patch('/:id/toggle-status/:adminUserId', verifyAdmin, togglePlanStatus);
