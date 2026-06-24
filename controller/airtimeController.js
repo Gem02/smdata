@@ -16,7 +16,7 @@ const NETWORK_CODES = {
 const generateTransactionRef = () => 'AIRTIME-' + Date.now() + '-' + Math.floor(Math.random() * 1000);
 
 const buyAirtime = async (req, res) => {
-  const { network, phone, amount, userId, pin } = req.body;
+  const { network, phone, amount, userId } = req.body;
   console.log("Airtime Request:", req.body);
 
   try {
@@ -35,7 +35,7 @@ const buyAirtime = async (req, res) => {
     }
 
 
-    const userAcc = await balanceCheck(userId, amount, pin);
+    const userAcc = await balanceCheck(userId, amount);
     console.log("User balance before deduction:", userAcc.balance);
 
 
