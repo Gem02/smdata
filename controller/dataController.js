@@ -4,6 +4,7 @@ const axios = require('axios');
 const validator = require('validator');
 const { balanceCheck } = require('../utilities/compareBalance');
 const {saveTransaction} = require('../utilities/saveTransaction');
+const Plan = require('../models/Plan');
 
 const NETWORK_CODES = {
   '1': 'MTN',
@@ -16,7 +17,7 @@ const generateTransactionRef = () => 'DATA-' + Date.now() + '-' + Math.floor(Mat
 
 
 const buyData = async (req, res) => {
-  const { network, phone, dataPlan, userId, amount } = req.body;
+  const { network, phone, PlanId, userId } = req.body;
   console.log("Request data:", req.body);
 
   try {
@@ -25,9 +26,16 @@ const buyData = async (req, res) => {
       return res.status(400).json({ message: 'Please provide a valid phone number.' });
     }
 
-    if (!amount || isNaN(amount) || amount <= 0) {
-      return res.status(400).json({ message: 'Invalid amount.' });
+    if (!PlanId) {
+      return res.status(400).json({ message: 'Please provide a valid PlanId.' });
     }
+
+    const plan = await Plan.findOne({ planId: PlanId, isActive: true });
+    if (!plan) {
+      return res.status(404).json({ message: 'Data plan not found.' });
+    }
+
+    const amount = plan.price;
 
     if (!NETWORK_CODES[network]) {
       return res.status(400).json({ message: 'Invalid network' });
@@ -40,16 +48,16 @@ const buyData = async (req, res) => {
     const payload = {
       network: parseInt(network),
       mobile_number: cleanPhone,
-      plan: parseInt(dataPlan),
+      plan: parseInt(PlanId),
       Ported_number: true
     };
 
     const response = await axios.post(
-      `https://www.husmodata.com/api/data/`,
+      `https://alrahuzdata.com/api/data/`,
       payload,
       {
         headers: {
-          Authorization: `Token 1b1064c5d139ecedbaca1f5686dc4f17a0952c73`,
+          Authorization: `Token ${process.env.ALRAHUZ_API_KEY}`,
           'Content-Type': 'application/json'
         }
       }
@@ -60,6 +68,7 @@ const buyData = async (req, res) => {
 
     // Only proceed if the purchase was successful
     if (!result?.Status || result.Status !== 'successful') {
+      console.log('Data purchase failed with', result)
       return res.status(400).json({
         message: 'Data purchase failed. No debit was made.',
       });
@@ -74,15 +83,14 @@ const buyData = async (req, res) => {
     try {
       await saveTransaction({
         user: userId,
-        accountNumber: userAcc.accountNumber,
         amount,
         transactionReference: generateTransactionRef(),
         TransactionType: 'Data-Purchase',
         type: 'debit',
-        description: result.message || `Data purchase for ${NETWORK_CODES[network]} - ${result.dataplan}`,
+        description: result.message || `Data purchase for ${NETWORK_CODES[network]} - ${cleanPhone}`,
         phone: cleanPhone,
         oldBalance,
-        newBalance
+        newBalance,
       });
     } catch (error) {
       return res.status(400).json({ message: 'Error saving transaction.' });

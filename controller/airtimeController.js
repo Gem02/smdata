@@ -64,7 +64,7 @@ const buyAirtime = async (req, res) => {
     const result = response.data;
 
     if (!result?.Status || result.Status !== 'successful') {
-      console.log('the result for not being succefull is', result)
+      console.log('airtime purchased failed with', result)
       return res.status(400).json({ message: 'Airtime purchase failed. Funds refunded.' });
     }
 
