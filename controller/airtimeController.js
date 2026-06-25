@@ -79,7 +79,7 @@ const buyAirtime = async (req, res) => {
       transactionReference: generateTransactionRef(),
       TransactionType: 'Airtime-Purchase',
       type: 'debit',
-      description: result.message || `Airtime purchase: ${NETWORK_CODES[mainNetwork]} ${plan_type} - ${cleanPhone}`,
+      description: result.message || `Airtime purchase: ${NETWORK_CODES[mainNetwork]} VTU - ${cleanPhone}`,
       phone: cleanPhone,
       oldBalance,
       newBalance,
