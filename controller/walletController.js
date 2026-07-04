@@ -22,7 +22,7 @@ const initiateTopup = async (req, res) => {
     const bankCode = ["20867"];
     const businessId = process.env.XIXAPAY_BUSINESS_ID;
     const accountType = "static";
-    const id_type = "bvn";
+    const id_type = "nin";
     const id_number = validator.escape(req.body?.number || "");
 
     const payload = {
