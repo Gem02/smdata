@@ -140,7 +140,14 @@ const registerUser = async (req, res) => {
         });
     }
 
-    return res.status(200).json({ message: 'User created successfully', user, wallet });
+    return res.status(200).json({
+      message: 'User created successfully',
+      user: {
+        ...user.toObject(),
+        referralCode: user.referralCode,
+      },
+      wallet,
+    });
 
   } catch (error) {
     console.error('Registration error:', error.message);

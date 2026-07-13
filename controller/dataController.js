@@ -4,6 +4,7 @@ const axios = require('axios');
 const validator = require('validator');
 const { balanceCheck } = require('../utilities/compareBalance');
 const {saveTransaction} = require('../utilities/saveTransaction');
+const { awardReferralCommission } = require('../utilities/referralCommission');
 const Plan = require('../models/Plan');
 
 const NETWORK_CODES = {
@@ -80,17 +81,27 @@ const buyData = async (req, res) => {
     const newBalance = userAcc.balance;
     await userAcc.save();
 
+    const transactionReference = generateTransactionRef();
+
     try {
       await saveTransaction({
         user: userId,
         amount,
-        transactionReference: generateTransactionRef(),
+        transactionReference,
         TransactionType: 'Data-Purchase',
         type: 'debit',
         description: result.message || `Data purchase for ${NETWORK_CODES[network]} - ${cleanPhone}`,
         phone: cleanPhone,
         oldBalance,
         newBalance,
+      });
+
+      await awardReferralCommission({
+        referredUserId: userId,
+        transactionAmount: amount,
+        transactionReference,
+        transactionType: 'Data-Purchase',
+        description: result.message || `Data purchase for ${NETWORK_CODES[network]} - ${cleanPhone}`,
       });
     } catch (error) {
       return res.status(400).json({ message: 'Error saving transaction.' });

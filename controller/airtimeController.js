@@ -5,6 +5,7 @@ const axios = require('axios');
 const validator = require('validator');
 const { balanceCheck } = require('../utilities/compareBalance');
 const {saveTransaction} = require('../utilities/saveTransaction');
+const { awardReferralCommission } = require('../utilities/referralCommission');
 
 const NETWORK_CODES = {
   '1': 'MTN',
@@ -73,16 +74,26 @@ const buyAirtime = async (req, res) => {
     const newBalance = userAcc.balance;
     await userAcc.save();
 
+    const transactionReference = generateTransactionRef();
+
     await saveTransaction({
       user: userId,
       amount,
-      transactionReference: generateTransactionRef(),
+      transactionReference,
       TransactionType: 'Airtime-Purchase',
       type: 'debit',
       description: result.message || `Airtime purchase: ${NETWORK_CODES[mainNetwork]} VTU - ${cleanPhone}`,
       phone: cleanPhone,
       oldBalance,
       newBalance,
+    });
+
+    await awardReferralCommission({
+      referredUserId: userId,
+      transactionAmount: amount,
+      transactionReference,
+      transactionType: 'Airtime-Purchase',
+      description: result.message || `Airtime purchase: ${NETWORK_CODES[mainNetwork]} VTU - ${cleanPhone}`,
     });
     console.log('everything saved here is the data:', result)
     return res.status(200).json({

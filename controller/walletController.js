@@ -6,6 +6,7 @@ const Users = require("../models/User");
 const axios = require('axios');
 const validator = require('validator');
 const { saveTransaction } = require('../utilities/saveTransaction');
+const { awardReferralCommission } = require('../utilities/referralCommission');
 
 const initiateTopup = async (req, res) => {
   try {
@@ -193,6 +194,14 @@ const handleXixapayWebhook = async (req, res) => {
             oldBalance,
             newBalance,
           });
+
+      await awardReferralCommission({
+        referredUserId: wallet.user,
+        transactionAmount: amount_paid,
+        transactionReference: transaction_id,
+        transactionType: 'Wallet-Topup',
+        description: 'Wallet TopUp',
+      });
     
     } else {
       console.log("ℹ️ Non-successful transaction ignored.");
