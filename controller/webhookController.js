@@ -88,24 +88,57 @@ async function processSuccessfulCharge(data) {
     // Find or create wallet
     let wallet = await Wallet.findOne({ user: user._id });
 
-    // Update wallet balance
-    wallet.balance += amount;
+    // Apply top-up fee
+    const fee = calculateTopupFee(amount);
+    const creditedAmount = Number((amount - fee).toFixed(2));
+
+    wallet.balance += creditedAmount;
     wallet.transactions.push({
       type: "credit",
-      amount: amount,
+      amount: creditedAmount,
       description: "PayStack topup",
       status: "completed",
+      oldBalance: wallet.balance - creditedAmount,
+      newBalance: wallet.balance,
     });
-    await wallet.save();
-    console.log(`Updated wallet balance for user ${user._id}: ₦${wallet.balance}`);
 
-    // Create transaction record
+    wallet.transactions.push({
+      type: "debit",
+      amount: fee,
+      description: "Topup fee (1.5% + ₦50 capped at ₦5,000)",
+      status: "completed",
+      oldBalance: wallet.balance,
+      newBalance: wallet.balance - fee,
+    });
+
+    wallet.balance -= fee;
+    await wallet.save();
+    console.log(`Updated wallet balance for user ${user._id}: ₦${wallet.balance} after fee ₦${fee}`);
+
+    // Create transaction record for the credited amount
     const transaction = await Transaction.create({
       user: user._id,
       type: "credit",
-      amount,
+      amount: creditedAmount,
       transactionReference: reference,
+      TransactionType: "Wallet-Topup",
+      description: "PayStack topup",
+      oldBalance: wallet.balance - creditedAmount + fee,
+      newBalance: wallet.balance,
     });
+
+    if (fee > 0) {
+      await Transaction.create({
+        user: user._id,
+        type: "debit",
+        amount: fee,
+        transactionReference: `${reference}-FEE`,
+        TransactionType: "Wallet-Topup-Fee",
+        description: "Wallet topup fee",
+        oldBalance: wallet.balance + fee,
+        newBalance: wallet.balance,
+      });
+    }
 
     console.log(`Created transaction record: ${transaction._id}`);
 

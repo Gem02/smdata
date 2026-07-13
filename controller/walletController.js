@@ -7,6 +7,7 @@ const axios = require('axios');
 const validator = require('validator');
 const { saveTransaction } = require('../utilities/saveTransaction');
 const { awardReferralCommission } = require('../utilities/referralCommission');
+const { calculateTopupFee } = require('../utilities/topupFee');
 
 const initiateTopup = async (req, res) => {
   try {
@@ -161,32 +162,47 @@ const handleXixapayWebhook = async (req, res) => {
 
       // 9️⃣ Capture old balance before update
       const oldBalance = wallet.balance;
+      const fee = calculateTopupFee(amount_paid);
+      const creditedAmount = Number((amount_paid - fee).toFixed(2));
 
-      // 🔢 10️⃣ Credit wallet balance
-      wallet.balance += amount_paid;
+      // 🔢 10️⃣ Credit wallet balance with net amount
+      wallet.balance += creditedAmount;
+      const afterCreditBalance = wallet.balance;
 
-      // Calculate new balance
-      const newBalance = wallet.balance;
-
-      // 🔢 10️⃣ Add transaction record
+      // 🔢 11️⃣ Record the credit
       wallet.transactions.push({
         type: "credit",
-        amount: amount_paid,
+        amount: creditedAmount,
         description: data.description || "XIXAPay top-up",
         reference: transaction_id,
         paymentGateway: "XIXAPay",
         status: "completed",
         oldBalance,
-        newBalance,
+        newBalance: afterCreditBalance,
       });
 
-      // 11️⃣ Save wallet update
+      // 🔢 12️⃣ Deduct the top-up fee if applicable
+      if (fee > 0) {
+        wallet.transactions.push({
+          type: "debit",
+          amount: fee,
+          description: "Top-up fee (1.5% capped at ₦50)",
+          reference: `${transaction_id}-FEE`,
+          paymentGateway: "Topup Fee",
+          status: "completed",
+          oldBalance: afterCreditBalance,
+          newBalance: afterCreditBalance - fee,
+        });
+        wallet.balance -= fee;
+      }
+
+      const newBalance = wallet.balance;
       await wallet.save();
-      console.log(`💰 Wallet updated for ${customerId}. Old balance: ${oldBalance}, New balance: ${newBalance}`);
+      console.log(`💰 Wallet updated for ${customerId}. Old balance: ${oldBalance}, New balance: ${newBalance}, fee: ${fee}`);
     
        await saveTransaction({
             user: wallet.user,
-            amount: amount_paid,
+            amount: creditedAmount,
             transactionReference: transaction_id,
             TransactionType: 'Wallet-Topup',
             type: 'credit',
@@ -194,6 +210,19 @@ const handleXixapayWebhook = async (req, res) => {
             oldBalance,
             newBalance,
           });
+
+      if (fee > 0) {
+        await saveTransaction({
+          user: wallet.user,
+          amount: fee,
+          transactionReference: `${transaction_id}-FEE`,
+          TransactionType: 'Wallet-Topup-Fee',
+          type: 'debit',
+          description: 'Top-up fee',
+          oldBalance: newBalance + fee,
+          newBalance,
+        });
+      }
 
       await awardReferralCommission({
         referredUserId: wallet.user,
