@@ -44,7 +44,30 @@ const verifySuperAdmin = async (req, res, next) => {
   }
 };
 
+const verifyUserParam = async (req, res, next) => {
+  try {
+    const userId = req.params.userId;
+
+    if (!userId) {
+      return res.status(400).json({ message: 'User ID is required' });
+    }
+
+    const user = await UserModel.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    req.user = user;
+    next();
+  } catch (err) {
+    console.error('User param verification error:', err);
+    return res.status(500).json({ message: 'Server error verifying user' });
+  }
+};
+
 module.exports = {
   verifyAdmin, 
-  verifySuperAdmin
+  verifySuperAdmin,
+  verifyUserParam
 };

@@ -1,12 +1,13 @@
 const Notification = require('../models/Notification');
+const User = require('../models/User');
 
 const sendNotification = async (req, res) => {
   try {
     const { title, message, userIds = [], targetAll = false } = req.body;
-    const admin = req.user;
+    const adminUserId = req.params.adminUserId;
 
-    if (!admin || !['admin', 'super-admin', 'super_admin'].includes(admin.role)) {
-      return res.status(403).json({ message: 'Only admins can send notifications' });
+    if (!adminUserId) {
+      return res.status(400).json({ message: 'adminUserId is required' });
     }
 
     if (!title || !message) {
@@ -22,7 +23,7 @@ const sendNotification = async (req, res) => {
       message,
       targetAll: Boolean(targetAll),
       recipients: targetAll ? [] : userIds,
-      createdBy: admin._id,
+      createdBy: adminUserId,
     });
 
     return res.status(201).json({ message: 'Notification sent', notification });
@@ -34,7 +35,18 @@ const sendNotification = async (req, res) => {
 
 const getUserNotifications = async (req, res) => {
   try {
-    const user = req.user;
+    const userId = req.params.userId || req.user?._id;
+
+    if (!userId) {
+      return res.status(400).json({ message: 'userId is required' });
+    }
+
+    const user = await User.findById(userId).select('_id createdAt');
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
     const notifications = await Notification.find({
       $or: [
         { targetAll: true, createdAt: { $gte: user.createdAt } },
@@ -61,7 +73,11 @@ const getUserNotifications = async (req, res) => {
 const markRead = async (req, res) => {
   try {
     const notificationId = req.params.id;
-    const userId = req.user._id;
+    const userId = req.params.userId || req.user?._id;
+
+    if (!userId) {
+      return res.status(400).json({ message: 'userId is required' });
+    }
 
     await Notification.findByIdAndUpdate(notificationId, { $addToSet: { readBy: userId } });
     return res.status(200).json({ message: 'Marked as read' });
@@ -74,7 +90,11 @@ const markRead = async (req, res) => {
 const markUnread = async (req, res) => {
   try {
     const notificationId = req.params.id;
-    const userId = req.user._id;
+    const userId = req.params.userId || req.user?._id;
+
+    if (!userId) {
+      return res.status(400).json({ message: 'userId is required' });
+    }
 
     await Notification.findByIdAndUpdate(notificationId, { $pull: { readBy: userId } });
     return res.status(200).json({ message: 'Marked as unread' });
@@ -87,7 +107,11 @@ const markUnread = async (req, res) => {
 const softDeleteByUser = async (req, res) => {
   try {
     const notificationId = req.params.id;
-    const userId = req.user._id;
+    const userId = req.params.userId || req.user?._id;
+
+    if (!userId) {
+      return res.status(400).json({ message: 'userId is required' });
+    }
 
     await Notification.findByIdAndUpdate(notificationId, { $addToSet: { deletedBy: userId } });
     return res.status(200).json({ message: 'Notification deleted (soft) for user' });
@@ -100,10 +124,10 @@ const softDeleteByUser = async (req, res) => {
 const hardDeleteByAdmin = async (req, res) => {
   try {
     const notificationId = req.params.id;
-    const admin = req.user;
+    const adminUserId = req.params.adminUserId;
 
-    if (!admin || !['admin', 'super-admin', 'super_admin'].includes(admin.role)) {
-      return res.status(403).json({ message: 'Only admins can permanently delete notifications' });
+    if (!adminUserId) {
+      return res.status(400).json({ message: 'adminUserId is required' });
     }
 
     await Notification.findByIdAndDelete(notificationId);
