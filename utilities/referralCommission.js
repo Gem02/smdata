@@ -3,7 +3,13 @@ const Wallet = require('../models/Wallet');
 const Transaction = require('../models/transactions');
 
 const REFERRAL_WINDOW_DAYS = Number(process.env.REFERRAL_WINDOW_DAYS || 50);
-const REFERRAL_COMMISSION_RATE = Number(process.env.REFERRAL_COMMISSION_RATE || 0.05);
+
+// Fixed commission amounts per transaction type (in NGN)
+const FIXED_COMMISSIONS = {
+  'Wallet-Topup': Number(process.env.REFERRAL_WALLET_TOPUP || 5),
+  'Data-Purchase': Number(process.env.REFERRAL_DATA || 1),
+  'Airtime-Purchase': Number(process.env.REFERRAL_AIRTIME || 1),
+};
 
 const isReferralEligible = (referredUser, now = new Date()) => {
   if (!referredUser || !referredUser.createdAt) {
@@ -17,9 +23,10 @@ const isReferralEligible = (referredUser, now = new Date()) => {
   return diffInDays <= REFERRAL_WINDOW_DAYS;
 };
 
-const calculateReferralCommission = (amount) => {
-  const commission = Number(amount) * REFERRAL_COMMISSION_RATE;
-  return Number(commission.toFixed(2));
+const calculateReferralCommission = (amount, transactionType) => {
+  // Use fixed commission based on transaction type. Amount is ignored for fixed scheme
+  const fixed = FIXED_COMMISSIONS[transactionType] || 0;
+  return Number(Number(fixed).toFixed(2));
 };
 
 const awardReferralCommission = async ({
@@ -35,7 +42,7 @@ const awardReferralCommission = async ({
       return { credited: false, reason: 'not-eligible' };
     }
 
-    const commissionAmount = calculateReferralCommission(transactionAmount);
+    const commissionAmount = calculateReferralCommission(transactionAmount, transactionType);
     if (commissionAmount <= 0) {
       return { credited: false, reason: 'zero-amount' };
     }
@@ -89,7 +96,7 @@ const awardReferralCommission = async ({
 
 module.exports = {
   REFERRAL_WINDOW_DAYS,
-  REFERRAL_COMMISSION_RATE,
+  FIXED_COMMISSIONS,
   isReferralEligible,
   calculateReferralCommission,
   awardReferralCommission,

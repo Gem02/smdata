@@ -16,6 +16,9 @@ test('marks users outside the 50-day window as ineligible', () => {
   assert.equal(isReferralEligible(user, now), false);
 });
 
-test('calculates a commission from the transaction amount', () => {
-  assert.equal(calculateReferralCommission(1000), 50);
+test('returns fixed commission amounts per transaction type', () => {
+  assert.equal(calculateReferralCommission(1000, 'Wallet-Topup'), 5);
+  assert.equal(calculateReferralCommission(1000, 'Data-Purchase'), 1);
+  assert.equal(calculateReferralCommission(1000, 'Airtime-Purchase'), 1);
+  assert.equal(calculateReferralCommission(1000, 'Unknown-Type'), 0);
 });
