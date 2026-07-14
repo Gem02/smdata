@@ -5,15 +5,23 @@ const sendNotification = async (req, res) => {
     const { title, message, userIds = [], targetAll = false } = req.body;
     const admin = req.user;
 
-    if (!admin || !['admin', 'super-admin'].includes(admin.role)) {
+    if (!admin || !['admin', 'super-admin', 'super_admin'].includes(admin.role)) {
       return res.status(403).json({ message: 'Only admins can send notifications' });
+    }
+
+    if (!title || !message) {
+      return res.status(400).json({ message: 'title and message are required' });
+    }
+
+    if (!targetAll && (!Array.isArray(userIds) || userIds.length === 0)) {
+      return res.status(400).json({ message: 'Provide userIds or set targetAll to true' });
     }
 
     const notification = await Notification.create({
       title,
       message,
-      isGlobal: Boolean(targetAll),
-      recipients: Array.isArray(userIds) ? userIds : [],
+      targetAll: Boolean(targetAll),
+      recipients: targetAll ? [] : userIds,
       createdBy: admin._id,
     });
 
@@ -26,13 +34,13 @@ const sendNotification = async (req, res) => {
 
 const getUserNotifications = async (req, res) => {
   try {
-    const userId = req.user._id;
+    const user = req.user;
     const notifications = await Notification.find({
       $or: [
-        { isGlobal: true },
-        { recipients: userId }
+        { targetAll: true, createdAt: { $gte: user.createdAt } },
+        { recipients: user._id }
       ],
-      deletedBy: { $ne: userId }
+      deletedBy: { $ne: user._id }
     }).sort({ createdAt: -1 });
 
     const result = notifications.map(n => ({
@@ -40,8 +48,7 @@ const getUserNotifications = async (req, res) => {
       title: n.title,
       message: n.message,
       createdAt: n.createdAt,
-      isRead: n.readBy.some(r => r.toString() === userId.toString()),
-+      isDeleted: n.deletedBy.some(d => d.toString() === userId.toString()),
+      isRead: n.readBy.some(r => r.toString() === user._id.toString()),
     }));
 
     return res.status(200).json({ data: result });
@@ -95,7 +102,7 @@ const hardDeleteByAdmin = async (req, res) => {
     const notificationId = req.params.id;
     const admin = req.user;
 
-    if (!admin || !['admin', 'super-admin'].includes(admin.role)) {
+    if (!admin || !['admin', 'super-admin', 'super_admin'].includes(admin.role)) {
       return res.status(403).json({ message: 'Only admins can permanently delete notifications' });
     }
 
