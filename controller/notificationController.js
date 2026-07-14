@@ -35,17 +35,8 @@ const sendNotification = async (req, res) => {
 
 const getUserNotifications = async (req, res) => {
   try {
-    const userId = req.params.userId || req.user?._id;
 
-    if (!userId) {
-      return res.status(400).json({ message: 'userId is required' });
-    }
-
-    const user = await User.findById(userId).select('_id createdAt');
-
-    if (!user) {
-      return res.status(404).json({ message: 'User not found' });
-    }
+    const user = req.user;
 
     const notifications = await Notification.find({
       $or: [
@@ -73,13 +64,13 @@ const getUserNotifications = async (req, res) => {
 const markRead = async (req, res) => {
   try {
     const notificationId = req.params.id;
-    const userId = req.params.userId || req.user?._id;
+    const user = req.user;
 
-    if (!userId) {
-      return res.status(400).json({ message: 'userId is required' });
+    if (!user?._id) {
+      return res.status(400).json({ message: 'user is required' });
     }
 
-    await Notification.findByIdAndUpdate(notificationId, { $addToSet: { readBy: userId } });
+    await Notification.findByIdAndUpdate(notificationId, { $addToSet: { readBy: user._id } });
     return res.status(200).json({ message: 'Marked as read' });
   } catch (error) {
     console.error('markRead error:', error);
@@ -90,13 +81,13 @@ const markRead = async (req, res) => {
 const markUnread = async (req, res) => {
   try {
     const notificationId = req.params.id;
-    const userId = req.params.userId || req.user?._id;
+    const user = req.user;
 
-    if (!userId) {
-      return res.status(400).json({ message: 'userId is required' });
+    if (!user?._id) {
+      return res.status(400).json({ message: 'user is required' });
     }
 
-    await Notification.findByIdAndUpdate(notificationId, { $pull: { readBy: userId } });
+    await Notification.findByIdAndUpdate(notificationId, { $pull: { readBy: user._id } });
     return res.status(200).json({ message: 'Marked as unread' });
   } catch (error) {
     console.error('markUnread error:', error);
@@ -107,13 +98,13 @@ const markUnread = async (req, res) => {
 const softDeleteByUser = async (req, res) => {
   try {
     const notificationId = req.params.id;
-    const userId = req.params.userId || req.user?._id;
+    const user = req.user;
 
-    if (!userId) {
-      return res.status(400).json({ message: 'userId is required' });
+    if (!user?._id) {
+      return res.status(400).json({ message: 'user is required' });
     }
 
-    await Notification.findByIdAndUpdate(notificationId, { $addToSet: { deletedBy: userId } });
+    await Notification.findByIdAndUpdate(notificationId, { $addToSet: { deletedBy: user._id } });
     return res.status(200).json({ message: 'Notification deleted (soft) for user' });
   } catch (error) {
     console.error('softDeleteByUser error:', error);

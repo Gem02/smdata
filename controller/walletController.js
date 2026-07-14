@@ -1,6 +1,7 @@
 // controller/walletController.js
 require('dotenv').config();
 const Wallet = require("../models/Wallet");
+const Transaction = require("../models/transactions");
 const crypto = require("crypto");
 const Users = require("../models/User");
 const axios = require('axios');
@@ -284,6 +285,188 @@ const handleXixapayWebhook = async (req, res) => {
   }
 };
 
+const getReferralCommissionEarnings = async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const { type } = req.query;
+
+    // Verify user exists
+    const user = await Users.findById(userId);
+    if (!user) {
+      return res.status(404).json({ success: false, message: "User not found" });
+    }
+
+    // Get all referral commission transactions for this user
+    let query = { 
+      user: userId,
+      TransactionType: 'Referral-Commission'
+    };
+
+    // Filter by transaction type if provided
+    if (type && ['Wallet-Topup', 'Data-Purchase', 'Airtime-Purchase'].includes(type)) {
+      // Search in description to identify the source transaction type
+      query.description = { $regex: type, $options: 'i' };
+    }
+    
+    // Fetch all transactions
+    const transactions = await Transaction.find(query)
+      .sort({ createdAt: -1 })
+      .lean();
+
+    // Process transactions to extract and categorize the source type
+    const processedTransactions = transactions.map(tx => {
+      let sourceType = 'Unknown';
+      
+      if (tx.description.includes('Wallet-Topup') || tx.description.includes('Wallet TopUp')) {
+        sourceType = 'Wallet-Topup';
+      } else if (tx.description.includes('Data-Purchase')) {
+        sourceType = 'Data-Purchase';
+      } else if (tx.description.includes('Airtime-Purchase')) {
+        sourceType = 'Airtime-Purchase';
+      }
+
+      return {
+        _id: tx._id,
+        amount: tx.amount,
+        sourceType,
+        description: tx.description,
+        reference: tx.transactionReference,
+        status: tx.status,
+        createdAt: tx.createdAt,
+        oldBalance: tx.oldBalance,
+        newBalance: tx.newBalance,
+      };
+    });
+
+    // Calculate summary statistics
+    const summary = {
+      totalEarnings: transactions.reduce((sum, tx) => sum + tx.amount, 0),
+      totalTransactions: transactions.length,
+      byType: {
+        'Wallet-Topup': transactions
+          .filter(tx => tx.description.includes('Wallet-Topup') || tx.description.includes('Wallet TopUp'))
+          .reduce((sum, tx) => sum + tx.amount, 0),
+        'Data-Purchase': transactions
+          .filter(tx => tx.description.includes('Data-Purchase'))
+          .reduce((sum, tx) => sum + tx.amount, 0),
+        'Airtime-Purchase': transactions
+          .filter(tx => tx.description.includes('Airtime-Purchase'))
+          .reduce((sum, tx) => sum + tx.amount, 0),
+      }
+    };
+
+    return res.status(200).json({
+      success: true,
+      data: {
+        summary,
+        transactions: processedTransactions,
+        totalRecords: transactions.length
+      }
+    });
+  } catch (error) {
+    console.error("Error fetching referral commissions:", error);
+    return res.status(500).json({ success: false, message: "Internal server error" });
+  }
+};
+
+const getReferredUsers = async (req, res) => {
+  try {
+    const { userId } = req.params;
+
+    // Verify user exists
+    const user = await Users.findById(userId);
+    if (!user) {
+      return res.status(404).json({ success: false, message: "User not found" });
+    }
+
+    // Get all users referred by this user
+    const referredUsers = await Users.find({ referredBy: userId })
+      .select('_id fullName email phone referralCode createdAt isVerified hasAccount')
+      .sort({ createdAt: -1 })
+      .lean();
+
+    // Get commission earned from each referred user
+    const referredUsersWithCommissions = await Promise.all(
+      referredUsers.map(async (referredUser) => {
+        const commissionAmount = await Transaction.aggregate([
+          {
+            $match: {
+              user: referredUser._id,
+              TransactionType: 'Referral-Commission'
+            }
+          },
+          {
+            $group: {
+              _id: null,
+              totalCommission: { $sum: '$amount' },
+              transactionCount: { $sum: 1 }
+            }
+          }
+        ]);
+
+        const commission = commissionAmount[0] || { totalCommission: 0, transactionCount: 0 };
+
+        // Get the breakdown by transaction type
+        const typeBreakdown = await Transaction.aggregate([
+          {
+            $match: {
+              user: referredUser._id,
+              TransactionType: 'Referral-Commission'
+            }
+          },
+          {
+            $facet: {
+              walletTopup: [
+                { $match: { description: { $regex: 'Wallet-Topup|Wallet TopUp', $options: 'i' } } },
+                { $group: { _id: null, count: { $sum: 1 }, total: { $sum: '$amount' } } }
+              ],
+              dataPurchase: [
+                { $match: { description: { $regex: 'Data-Purchase', $options: 'i' } } },
+                { $group: { _id: null, count: { $sum: 1 }, total: { $sum: '$amount' } } }
+              ],
+              airtimePurchase: [
+                { $match: { description: { $regex: 'Airtime-Purchase', $options: 'i' } } },
+                { $group: { _id: null, count: { $sum: 1 }, total: { $sum: '$amount' } } }
+              ]
+            }
+          }
+        ]);
+
+        return {
+          _id: referredUser._id,
+          fullName: referredUser.fullName,
+          email: referredUser.email,
+          phone: referredUser.phone,
+          referralCode: referredUser.referralCode,
+          joinedDate: referredUser.createdAt,
+          isVerified: referredUser.isVerified,
+          hasAccount: referredUser.hasAccount,
+          commission: {
+            total: commission.totalCommission,
+            transactionCount: commission.transactionCount,
+            breakdown: {
+              walletTopup: typeBreakdown[0]?.walletTopup[0] || { count: 0, total: 0 },
+              dataPurchase: typeBreakdown[0]?.dataPurchase[0] || { count: 0, total: 0 },
+              airtimePurchase: typeBreakdown[0]?.airtimePurchase[0] || { count: 0, total: 0 },
+            }
+          }
+        };
+      })
+    );
+
+    return res.status(200).json({
+      success: true,
+      data: {
+        referredUsers: referredUsersWithCommissions,
+        totalRecords: referredUsersWithCommissions.length
+      }
+    });
+  } catch (error) {
+    console.error("Error fetching referred users:", error);
+    return res.status(500).json({ success: false, message: "Internal server error" });
+  }
+};
 
 
-module.exports = {getUserBalance, getUserTransactions, initiateTopup, handleXixapayWebhook }
+
+module.exports = {getUserBalance, getUserTransactions, initiateTopup, handleXixapayWebhook, getReferralCommissionEarnings, getReferredUsers }
