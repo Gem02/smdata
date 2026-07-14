@@ -202,7 +202,8 @@ const login = async (req, res) => {
             id: userInfo._id,
             fullName: userInfo.fullName,
             email: userInfo.email,
-            role: userInfo.role
+            role: userInfo.role,
+            referralCode: userInfo.referralCode
         });
 
     } catch (error) {

@@ -11,6 +11,7 @@ const wallet = require('./route/walletRoute');
 const verifications = require('./route/mainVerificationsRoute');
 const transactions = require('./route/transactionRoute');
 const vtuPurchase = require('./route/vtuRoute');
+const notifications = require('./route/notificationRoute');
 const admin = require('./route/adminRoute');
 const message = require('./route/messageRoutes');
 const plans = require('./route/planRoutes')
@@ -47,6 +48,7 @@ app.use('/api/transactions', transactions);
 app.use('/api/admin', admin);
 app.use('/api/message', message);
 app.use('/api/data-plan', plans);
+app.use('/api/notifications', notifications);
 
 
 const PORT = process.env.PORT || 8000;
