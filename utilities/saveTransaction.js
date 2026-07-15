@@ -1,5 +1,6 @@
 const Transaction = require('../models/transactions');
 const DataHistory = require('../models/dataHistoryModel');
+const AdminProfit = require('../models/AdminProfit');
 
 const saveTransaction = async ({
   user,
@@ -10,7 +11,8 @@ const saveTransaction = async ({
   status = 'success',
   description,
   oldBalance = 0,
-  newBalance = 0
+  newBalance = 0,
+  adminProfit
 }) => {
   try {
     const newTransaction = new Transaction({
@@ -26,6 +28,25 @@ const saveTransaction = async ({
     });
 
     await newTransaction.save();
+
+    if (status === 'success' && ['Wallet-Topup-Fee', 'Data-Purchase', 'Airtime-Purchase'].includes(TransactionType)) {
+      const profitRecord = adminProfit || {
+        amount: Number(amount || 0),
+        sourceType: TransactionType,
+        description: description || TransactionType,
+        relatedUser: user || null
+      };
+
+      await AdminProfit.create({
+        transactionReference,
+        sourceType: profitRecord.sourceType || TransactionType,
+        amount: Number(profitRecord.amount || 0),
+        description: profitRecord.description || description || TransactionType,
+        relatedUser: profitRecord.relatedUser ?? user || null,
+        createdAt: new Date(),
+      });
+    }
+
     console.log('✅ Transaction saved successfully.');
   } catch (error) {
     console.error('❌ Error saving transaction:', error.message);

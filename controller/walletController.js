@@ -222,6 +222,12 @@ const handleXixapayWebhook = async (req, res) => {
           description: 'Top-up fee',
           oldBalance: newBalance + fee,
           newBalance,
+          adminProfit: {
+            amount: fee,
+            sourceType: 'Wallet-Topup-Fee',
+            description: 'Wallet top-up fee profit',
+            relatedUser: wallet.user,
+          },
         });
       }
 

@@ -16,6 +16,25 @@ const NETWORK_CODES = {
 
 const generateTransactionRef = () => 'AIRTIME-' + Date.now() + '-' + Math.floor(Math.random() * 1000);
 
+const AIRTIME_DISCOUNT_RATE = 0.02;
+
+const calculateAirtimeDiscount = (amount) => {
+  const numericAmount = Number(amount);
+
+  if (!Number.isFinite(numericAmount) || numericAmount <= 0) {
+    return { originalAmount: 0, discountAmount: 0, discountedAmount: 0 };
+  }
+
+  const discountAmount = Number((numericAmount * AIRTIME_DISCOUNT_RATE).toFixed(2));
+  const discountedAmount = Number((numericAmount - discountAmount).toFixed(2));
+
+  return {
+    originalAmount: numericAmount,
+    discountAmount,
+    discountedAmount,
+  };
+};
+
 const buyAirtime = async (req, res) => {
   const { network, phone, amount, userId } = req.body;
   console.log("Airtime Request:", req.body);
@@ -35,14 +54,16 @@ const buyAirtime = async (req, res) => {
       return res.status(400).json({ message: 'Invalid network' });
     }
 
+    const { originalAmount, discountAmount, discountedAmount } = calculateAirtimeDiscount(amount);
+    const chargeAmount = discountedAmount;
+    const airtimeProfitAmount = Number((originalAmount * 0.01).toFixed(2));
 
-    const userAcc = await balanceCheck(userId, amount);
+    const userAcc = await balanceCheck(userId, chargeAmount);
     console.log("User balance before deduction:", userAcc.balance);
-
 
     const payload = {
       network: mainNetwork,
-      amount: Number(amount),
+      amount: originalAmount,
       mobile_number: cleanPhone,
       Ported_number: true,
       airtime_type: 'VTU'
@@ -70,7 +91,7 @@ const buyAirtime = async (req, res) => {
     }
 
     const oldBalance = userAcc.balance;
-    userAcc.balance -= amount;
+    userAcc.balance -= chargeAmount;
     const newBalance = userAcc.balance;
     await userAcc.save();
 
@@ -78,7 +99,7 @@ const buyAirtime = async (req, res) => {
 
     await saveTransaction({
       user: userId,
-      amount,
+      amount: chargeAmount,
       transactionReference,
       TransactionType: 'Airtime-Purchase',
       type: 'debit',
@@ -86,11 +107,17 @@ const buyAirtime = async (req, res) => {
       phone: cleanPhone,
       oldBalance,
       newBalance,
+      adminProfit: {
+        amount: airtimeProfitAmount,
+        sourceType: 'Airtime-Purchase',
+        description: `Airtime interest for ${NETWORK_CODES[mainNetwork]}`,
+        relatedUser: userId,
+      },
     });
 
     await awardReferralCommission({
       referredUserId: userId,
-      transactionAmount: amount,
+      transactionAmount: chargeAmount,
       transactionReference,
       transactionType: 'Airtime-Purchase',
       description: result.message || `Airtime purchase: ${NETWORK_CODES[mainNetwork]} VTU - ${cleanPhone}`,
@@ -99,6 +126,8 @@ const buyAirtime = async (req, res) => {
     return res.status(200).json({
       message: 'Airtime purchased successfully',
       data: result,
+      discountApplied: discountAmount,
+      discountedAmount: chargeAmount,
       balance: userAcc.balance
     });
 
@@ -112,4 +141,4 @@ const buyAirtime = async (req, res) => {
   }
 };
 
-module.exports = { buyAirtime };
+module.exports = { buyAirtime, calculateAirtimeDiscount };

@@ -82,6 +82,7 @@ const buyData = async (req, res) => {
     await userAcc.save();
 
     const transactionReference = generateTransactionRef();
+    const profitAmount = Math.max(0, Number((plan.sellingPrice ?? plan.price ?? 0) - (plan.costPrice ?? 0)).toFixed(2));
 
     try {
       await saveTransaction({
@@ -94,6 +95,12 @@ const buyData = async (req, res) => {
         phone: cleanPhone,
         oldBalance,
         newBalance,
+        adminProfit: {
+          amount: profitAmount,
+          sourceType: 'Data-Purchase',
+          description: `Data profit from ${plan.planName || plan.planId}`,
+          relatedUser: userId,
+        },
       });
 
       await awardReferralCommission({

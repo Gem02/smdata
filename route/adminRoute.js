@@ -14,6 +14,9 @@ const {
   getDashboardStats,
   getDailyStats,
   getWeeklyStats,
+  getDailyProfitStats,
+  getWeeklyProfitStats,
+  getMonthlyProfitStats,
   getOrderHistory,
   getOrderDetails,
   getPaymentHistory,
@@ -28,6 +31,9 @@ const { verifyAdmin, verifySuperAdmin } = require('../middleware/adminMiddleware
 router.get('/dashboard/stats/:adminUserId', verifyAdmin, getDashboardStats);
 router.get('/dashboard/daily/:adminUserId', verifyAdmin, getDailyStats);
 router.get('/dashboard/weekly/:adminUserId', verifyAdmin, getWeeklyStats);
+router.get('/dashboard/profit/daily/:adminUserId', verifyAdmin, getDailyProfitStats);
+router.get('/dashboard/profit/weekly/:adminUserId', verifyAdmin, getWeeklyProfitStats);
+router.get('/dashboard/profit/monthly/:adminUserId', verifyAdmin, getMonthlyProfitStats);
 
 // ===== USER MANAGEMENT ENDPOINTS =====
 router.get('/users/:adminUserId', verifyAdmin, getAllUsers);

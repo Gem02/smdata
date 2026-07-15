@@ -8,6 +8,8 @@ const VirtualAccount = require('../models/VirtualAccountModel');
 const validator = require('validator');
 const {saveTransaction} = require('../utilities/saveTransaction');
 const {sendStatusUpdateEmail} = require('../utilities/emailTemplate');
+const Plan = require('../models/Plan');
+const AdminProfit = require('../models/AdminProfit');
 
 const getAllUsers = async (req, res) => {
   try {
@@ -439,6 +441,120 @@ const getWeeklyStats = async (req, res) => {
   }
 };
 
+const calculateProfitStats = async (startDate, endDate) => {
+  const adminProfits = await AdminProfit.find({
+    createdAt: { $gte: startDate, $lte: endDate }
+  }).lean();
+
+  let walletTopupFeeProfit = 0;
+  let dataProfit = 0;
+  let airtimeProfit = 0;
+
+  for (const record of adminProfits) {
+    if (record.sourceType === 'Wallet-Topup-Fee') {
+      walletTopupFeeProfit += Number(record.amount || 0);
+    } else if (record.sourceType === 'Data-Purchase') {
+      dataProfit += Number(record.amount || 0);
+    } else if (record.sourceType === 'Airtime-Purchase') {
+      airtimeProfit += Number(record.amount || 0);
+    }
+  }
+
+  return {
+    walletTopupFeeProfit,
+    dataProfit,
+    airtimeProfit,
+    totalProfit: Number((walletTopupFeeProfit + dataProfit + airtimeProfit).toFixed(2))
+  };
+};
+
+const getDailyProfitStats = async (req, res) => {
+  try {
+    const now = new Date();
+    const startDate = new Date(now);
+    startDate.setHours(0, 0, 0, 0);
+    const endDate = new Date(now);
+    endDate.setHours(23, 59, 59, 999);
+
+    const profit = await calculateProfitStats(startDate, endDate);
+
+    res.status(200).json({
+      success: true,
+      data: {
+        range: 'daily',
+        startDate,
+        endDate,
+        ...profit
+      }
+    });
+  } catch (error) {
+    console.error('Daily profit stats error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Server error fetching daily profit stats',
+      error: error.message
+    });
+  }
+};
+
+const getWeeklyProfitStats = async (req, res) => {
+  try {
+    const now = new Date();
+    const endDate = new Date(now);
+    endDate.setHours(23, 59, 59, 999);
+    const startDate = new Date(now);
+    startDate.setDate(now.getDate() - 6);
+    startDate.setHours(0, 0, 0, 0);
+
+    const profit = await calculateProfitStats(startDate, endDate);
+
+    res.status(200).json({
+      success: true,
+      data: {
+        range: 'weekly',
+        startDate,
+        endDate,
+        ...profit
+      }
+    });
+  } catch (error) {
+    console.error('Weekly profit stats error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Server error fetching weekly profit stats',
+      error: error.message
+    });
+  }
+};
+
+const getMonthlyProfitStats = async (req, res) => {
+  try {
+    const now = new Date();
+    const startDate = new Date(now.getFullYear(), now.getMonth(), 1);
+    const endDate = new Date(now.getFullYear(), now.getMonth() + 1, 0, 23, 59, 59, 999);
+
+    const profit = await calculateProfitStats(startDate, endDate);
+
+    res.status(200).json({
+      success: true,
+      data: {
+        range: 'monthly',
+        startDate,
+        endDate,
+        ...profit
+      }
+    });
+  } catch (error) {
+    console.error('Monthly profit stats error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Server error fetching monthly profit stats',
+      error: error.message
+    });
+  }
+};
+
+
 // ===== ORDER HISTORY ENDPOINTS =====
 
 /**
@@ -743,6 +859,9 @@ module.exports = {
   getDashboardStats,
   getDailyStats,
   getWeeklyStats,
+  getDailyProfitStats,
+  getWeeklyProfitStats,
+  getMonthlyProfitStats,
   getOrderHistory,
   getOrderDetails,
   getPaymentHistory,
