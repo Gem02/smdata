@@ -59,7 +59,7 @@ const getPlansByNetwork = async (req, res) => {
         }
         
         const plans = await Plan.find({ network, isActive: true })
-            .sort({ price: 1 });
+            .sort({ sellingPrice: 1 });
         
         res.status(200).json({
             success: true,
@@ -78,7 +78,9 @@ const getPlansByNetwork = async (req, res) => {
 
 const createPlan = async (req, res) => {
     try {
-        const { network, planId, planName, validity, price } = req.body;
+        const { network, planId, planName, validity, costPrice, sellingPrice } = req.body;
+        const finalSellingPrice = sellingPrice ?? 0;
+        const finalCostPrice = costPrice ?? 0;
         
         // Check if planId already exists
         const existingPlan = await Plan.findOne({ planId });
@@ -102,7 +104,8 @@ const createPlan = async (req, res) => {
             planId,
             planName,
             validity,
-            price
+            costPrice: finalCostPrice,
+            sellingPrice: finalSellingPrice
         });
         
         res.status(201).json({
@@ -121,7 +124,7 @@ const createPlan = async (req, res) => {
 
 const updatePlan = async (req, res) => {
     try {
-        const { network, planId, planName, validity, price, isActive } = req.body;
+        const { network, planId, planName, validity, costPrice, sellingPrice, price, isActive } = req.body;
         
         // Prepare update object with only provided fields
         const updateData = {};
@@ -130,7 +133,12 @@ const updatePlan = async (req, res) => {
         if (planId) updateData.planId = planId;
         if (planName) updateData.planName = planName;
         if (validity) updateData.validity = validity;
-        if (price) updateData.price = price;
+        if (costPrice !== undefined) updateData.costPrice = costPrice;
+        if (sellingPrice !== undefined) {
+            updateData.sellingPrice = sellingPrice;
+        } else if (price !== undefined) {
+            updateData.sellingPrice = price;
+        }
         if (isActive !== undefined) updateData.isActive = isActive;
         
         // Always update the timestamp

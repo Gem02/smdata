@@ -36,7 +36,7 @@ const buyData = async (req, res) => {
       return res.status(404).json({ message: 'Data plan not found.' });
     }
 
-    const amount = plan.price;
+    const amount = plan.sellingPrice ?? plan.price;
 
     if (!NETWORK_CODES[network]) {
       return res.status(400).json({ message: 'Invalid network' });

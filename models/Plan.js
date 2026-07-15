@@ -23,7 +23,12 @@ const planSchema = new mongoose.Schema({
         required: true,
         trim: true
     },
-    price: {
+    costPrice: {
+        type: Number,
+        default: 0,
+        min: 0
+    },
+    sellingPrice: {
         type: Number,
         required: true,
         min: 0
