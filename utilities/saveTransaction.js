@@ -42,7 +42,7 @@ const saveTransaction = async ({
         sourceType: profitRecord.sourceType || TransactionType,
         amount: Number(profitRecord.amount || 0),
         description: profitRecord.description || description || TransactionType,
-        relatedUser: profitRecord.relatedUser ?? user || null,
+        relatedUser: profitRecord.relatedUser || user || null,
         createdAt: new Date(),
       });
     }
